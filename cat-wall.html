@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>猫猫墙 · 边城日报社</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/loader.js"></script>
+  <style>
+    .catwall-container { padding: 20px; }
+    .catwall-container h2 { text-align:center; color:#3a2010; font-family:"SimHei","黑体",sans-serif; font-size:18px; letter-spacing:2px; margin-bottom:4px; }
+    .catwall-container .subtitle { text-align:center; font-size:11px; color:#8a7a6a; margin-bottom:20px; }
+    .post-form { border:2px solid #b0a080; background:#fdf9f0; padding:14px 16px; margin-bottom:20px; }
+    .post-form td { padding:4px 6px; font-size:12px; }
+    .post-form input, .post-form textarea {
+      width:100%; padding:4px 8px; font-family:"SimSun","宋体",serif; font-size:13px;
+      border:1px inset #b0a080; background:#fffef8; color:#1a1a1a;
+    }
+    .post-form textarea { resize:vertical; min-height:50px; }
+    .cat-card {
+      border:1px solid #c8b898; background:#fefcf4; padding:12px 14px; margin-bottom:10px;
+      position:relative;
+    }
+    .cat-card .card-header { font-size:12px; color:#5a5a5a; margin-bottom:4px; }
+    .cat-card .card-header strong { color:#3a2010; font-size:14px; }
+    .cat-card .card-body { font-size:13px; color:#4a4a4a; line-height:1.8; }
+    .cat-card .card-time { font-size:10px; color:#b0a090; margin-top:6px; }
+    .cat-card .card-delete { position:absolute; right:14px; top:12px; font-size:10px; color:#c0b0a0; cursor:pointer; }
+    .cat-card .card-delete:hover { color:#a03030; }
+    .egg-progress {
+      text-align:center; padding:10px; margin-bottom:16px; border:1px dashed #b0a080;
+      background:#fdf9f0; font-size:12px; color:#5a5a5a;
+    }
+    .egg-progress strong { color:#5a3a10; }
+  </style>
+</head>
+<body>
+<div class="system-container">
+
+  <div class="header-bar">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="60" align="center" valign="middle"><div class="logo-placeholder">🐱</div></td>
+        <td align="center" valign="middle">
+          <h1 class="system-title" id="egg-catwall" style="cursor:default;">猫 猫 墙</h1>
+          <span class="system-ver">这里什么都没有，只有猫猫</span>
+        </td>
+        <td width="60" align="center" valign="middle"><div class="logo-placeholder">🐱</div></td>
+      </tr>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <div style="background-color:#f0ead8;padding:4px 14px;border-bottom:1px solid #c8b898;font-size:11px;text-align:center;">
+    <a href="index.html" style="color:#000080;">← 返回报社首页</a>
+    &nbsp;|&nbsp; 你找到了 <strong id="egg-count">0</strong>/12 个隐藏猫猫
+  </div>
+
+  <hr class="divider">
+
+  <div class="catwall-container">
+
+    <h2>📸 档案室角落的猫猫们</h2>
+    <p class="subtitle">报社记者们在档案深处发现的猫猫。如果你也找到了，请在下方分享你的猫猫。</p>
+
+    <!-- 彩蛋进度（未集齐） -->
+    <div class="egg-progress" id="egg-progress-incomplete">
+      🐱 你已经在档案室发现了 <strong id="egg-progress-count">0</strong> / 12 只隐藏猫猫。
+      <span id="egg-progress-hint" style="display:none;">继续探索报社网站的每个角落吧！</span>
+    </div>
+
+    <!-- 全部集齐 · 感谢信 -->
+    <div id="egg-complete-letter" style="display:none;margin-bottom:16px;padding:20px;border:3px double #b0a080;background:linear-gradient(180deg,#fefcf0,#fdf5e0);text-align:center;position:relative;">
+      <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#fefcf0;padding:2px 12px;font-size:10px;color:#b0a090;letter-spacing:1px;">🐱 档案室密函 🐱</div>
+      <p style="font-size:15px;color:#5a3a10;font-family:'KaiTi','楷体',serif;letter-spacing:2px;margin:8px 0 4px;">致最细心的探索者：</p>
+      <p style="font-size:12px;color:#6a5a5a;line-height:2;margin:0 0 12px;">
+        你找到了档案室里全部的十二只猫。<br>
+        它们平时躲在新闻纸堆里，只有真正用心翻阅每一页的人才能遇见。<br>
+        毛毛说谢谢你陪它玩——档案室很久没这么热闹了。
+      </p>
+      <div style="font-size:40px;margin:8px 0;">🐱🐱🐱</div>
+      <p style="font-size:11px;color:#8a7a6a;line-height:1.8;margin:0;">
+        如果你觉得这个网站有意思，<br>
+        可以考虑<a href="#" onclick="showDonate();return false;" style="color:#5a4a3a;text-decoration:underline;">请毛毛吃一罐罐头</a>。<br>
+        <span style="font-size:10px;color:#c0b0a0;">（完全自愿，不打赏毛毛也不会生气的）</span>
+      </p>
+    </div>
+
+    <!-- 赞助弹窗（隐藏） -->
+    <div id="donate-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;">
+      <div style="background:#faf6ed;border:3px double #8a7a5a;padding:24px;text-align:center;max-width:360px;box-shadow:4px 4px 16px rgba(0,0,0,0.4);">
+        <p style="font-size:14px;color:#3a2010;font-family:'KaiTi','楷体',serif;letter-spacing:1px;margin:0 0 4px;">🐱 毛毛的罐头基金</p>
+        <p style="font-size:11px;color:#8a7a6a;margin:0 0 14px;">档案室的猫猫感谢你的好意</p>
+        <div style="width:180px;height:180px;margin:0 auto 12px;border:2px solid #b0a080;background:#ece4d4;display:flex;align-items:center;justify-content:center;">
+          <!-- 替换为你的微信/支付宝收款码 -->
+          <img src="assets/donate-wechat.png" alt="赞赏码" style="max-width:170px;max-height:170px;"
+            onerror="this.style.display='none';this.parentElement.innerHTML='<span style=font-size:11px;color:#9a8a7a;>赞赏码<br>（请放入<br>assets/donate-wechat.png）</span>'">
+        </div>
+        <p style="font-size:10px;color:#b0a090;margin:0 0 10px;">毛毛说：谢谢，但不用勉强。</p>
+        <button onclick="document.getElementById('donate-modal').style.display='none'" style="padding:4px 18px;font-size:12px;font-family:'SimSun',serif;border:2px outset #c0b8a8;background:#d8ccb4;color:#3a2010;cursor:pointer;">关 闭</button>
+      </div>
+    </div>
+
+    <!-- 发帖表单 -->
+    <div class="post-form">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="60"><strong>猫猫名字：</strong></td>
+          <td><input type="text" id="post-name" placeholder="你的猫猫叫什么？" maxlength="20"></td>
+        </tr>
+        <tr>
+          <td width="60"><strong>猫猫描述：</strong></td>
+          <td><textarea id="post-body" placeholder="分享你和猫猫的故事...（也可以贴上猫猫图片链接）" rows="2"></textarea></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="padding-top:8px;">
+            <button class="system-button" onclick="submitPost()">分 享 猫 猫</button>
+            <span style="font-size:11px;color:#8a7a6a;margin-left:8px;">留言保存在本地浏览器中</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 留言列表 -->
+    <div id="posts-list">
+      <p style="text-align:center;font-size:12px;color:#b0a090;">还没有人分享猫猫，来做第一个吧！</p>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+  <div class="footer-bar">
+    <a href="index.html" style="color:#5a4a3a;">← 返回首页</a> &nbsp;|&nbsp;
+    猫猫墙 · 友情链接：<a href="https://www.google.com/search?q=cute+cats" target="_blank" rel="noopener" style="color:#000080;">互联网上的猫猫</a>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ═══════════ 彩蛋进度 ═══════════
+  var eggs = [];
+  try { var s = localStorage.getItem('bordernews-cat-eggs'); if (s) eggs = JSON.parse(s); } catch(e) {}
+  document.getElementById('egg-count').textContent = eggs.length;
+  document.getElementById('egg-progress-count').textContent = eggs.length;
+
+  // 全部集齐时显示感谢信
+  if (eggs.length >= 12) {
+    document.getElementById('egg-progress-incomplete').style.display = 'none';
+    document.getElementById('egg-complete-letter').style.display = '';
+  } else {
+    document.getElementById('egg-progress-hint').style.display = '';
+  }
+
+  // 赞助弹窗
+  window.showDonate = function() {
+    var modal = document.getElementById('donate-modal');
+    modal.style.display = 'flex';
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) modal.style.display = 'none';
+    });
+  };
+
+  // ═══════════ 加载留言 ═══════════
+  var posts = [];
+  try { var p = localStorage.getItem('bordernews-cat-posts'); if (p) posts = JSON.parse(p); } catch(e) {}
+
+  function renderPosts() {
+    var container = document.getElementById('posts-list');
+    if (posts.length === 0) {
+      container.innerHTML = '<p style="text-align:center;font-size:12px;color:#b0a090;">还没有人分享猫猫，来做第一个吧！</p>';
+      return;
+    }
+    var html = '';
+    posts.slice().reverse().forEach(function(post, i) {
+      var realIdx = posts.length - 1 - i;
+      // 检测图片链接
+      var body = post.body
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+        .replace(/\n/g, '<br>');
+      // 简单URL转图片
+      body = body.replace(/(https?:\/\/\S+\.(jpg|jpeg|png|gif|webp)(\?\S*)?)/gi, function(match) {
+        return '<br><img src="' + match + '" style="max-width:200px;max-height:200px;border:1px solid #c8b898;margin:4px 0;" onerror="this.style.display=\'none\'"><br>';
+      });
+
+      html += '<div class="cat-card">' +
+        '<div class="card-header">🐱 <strong>' +
+          (post.name ? post.name.replace(/&/g,'&amp;').replace(/</g,'&lt;') : '无名猫猫') +
+        '</strong> 的投稿</div>' +
+        '<div class="card-body">' + body + '</div>' +
+        '<div class="card-time">' + (post.time || '未知时间') +
+        ' <span class="card-delete" onclick="deletePost(' + realIdx + ')">删除</span></div>' +
+      '</div>';
+    });
+    container.innerHTML = html;
+  }
+
+  renderPosts();
+
+  // ═══════════ 提交留言 ═══════════
+  window.submitPost = function() {
+    var nameEl = document.getElementById('post-name');
+    var bodyEl = document.getElementById('post-body');
+    var name = nameEl.value.trim();
+    var body = bodyEl.value.trim();
+    if (!body) { alert('请输入猫猫描述！'); return; }
+    if (!name) name = '匿名猫猫';
+
+    var now = new Date();
+    var time = now.getFullYear() + '-' +
+      String(now.getMonth()+1).padStart(2,'0') + '-' +
+      String(now.getDate()).padStart(2,'0') + ' ' +
+      String(now.getHours()).padStart(2,'0') + ':' +
+      String(now.getMinutes()).padStart(2,'0');
+
+    posts.push({ name: name, body: body, time: time });
+    try { localStorage.setItem('bordernews-cat-posts', JSON.stringify(posts)); } catch(e) {}
+
+    nameEl.value = '';
+    bodyEl.value = '';
+    renderPosts();
+  };
+
+  // 彩蛋 #7: 双击猫猫墙标题
+  (function(){
+    var cc=0,tt=null,el=document.getElementById('egg-catwall');
+    if(el) el.addEventListener('click',function(){
+      cc++;if(cc>=2){cc=0;if(tt)clearTimeout(tt);catEgg.show(7);}
+      else{tt=setTimeout(function(){cc=0;},800);}
+    });
+  })();
+
+  // ═══════════ 删除留言 ═══════════
+  window.deletePost = function(idx) {
+    if (!confirm('确定删除这条猫猫留言吗？')) return;
+    posts.splice(idx, 1);
+    try { localStorage.setItem('bordernews-cat-posts', JSON.stringify(posts)); } catch(e) {}
+    renderPosts();
+  };
+
+  // 回车提交
+  document.getElementById('post-body').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && e.ctrlKey) { e.preventDefault(); window.submitPost(); }
+  });
+
+})();
+</script>
+
+</body>
+</html>

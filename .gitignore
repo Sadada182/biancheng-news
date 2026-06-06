@@ -1,0 +1,9 @@
+.reasonix/
+MC/
+MuMuPlayer/
+diary-app/
+diary/
+*.exe
+*.msi
+*.zip
+*.lnk

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>联系我们 · 边城日报社</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/loader.js"></script>
+  <script src="assets/easter-egg.js"></script>
+  <style>
+    .contact-container { padding: 20px; font-size: 13px; line-height: 2; }
+    .contact-container h3 { color: #3a2010; border-bottom: 1px solid #b0a080; padding-bottom: 4px; margin: 0 0 14px; font-family: "SimHei","黑体",sans-serif; font-size: 15px; }
+    .contact-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    .contact-table td { padding: 8px 12px; border: 1px solid #c8b898; font-size: 13px; }
+    .contact-table .clabel { background: #f0e8d8; font-weight: bold; color: #3a2010; width: 100px; }
+    .contact-note { font-size: 11px; color: #8a7a6a; line-height: 1.8; border: 1px dashed #b0a080; padding: 10px 14px; background: #fdf9f0; margin-top: 16px; }
+  </style>
+</head>
+<body>
+<div class="system-container">
+
+  <div class="header-bar">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="60" align="center" valign="middle"><div class="logo-placeholder">联</div></td>
+        <td align="center" valign="middle">
+          <h1 class="system-title">边城日报社 · 联系我们</h1>
+          <span class="system-ver">新闻线索 · 读者来信 · 广告业务</span>
+        </td>
+        <td width="60" align="center" valign="middle"><div class="logo-placeholder">系</div></td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="background-color:#d4c8b0;padding:4px 14px;border-bottom:2px solid #9a8a6a;font-size:13px;text-align:center;letter-spacing:2px;">
+    <a href="index.html" style="color:#3a2a10;text-decoration:none;margin:0 12px;">首 页</a> |
+    <a href="news.html" style="color:#3a2a10;text-decoration:none;margin:0 12px;">新闻中心</a> |
+    <a href="about.html" style="color:#3a2a10;text-decoration:none;margin:0 12px;">关于本报</a> |
+    <a href="contact.html" style="color:#800000;text-decoration:none;margin:0 12px;font-weight:bold;">联系我们</a>
+  </div>
+
+  <hr class="divider">
+
+  <div class="contact-container">
+
+    <h3>▸ 报社联系方式</h3>
+    <table class="contact-table">
+      <tr><td class="clabel">社址</td><td>边城市新闻路12号 边城日报社大厦（邮编：000000）</td></tr>
+      <tr><td class="clabel">总机</td><td>(0XXX) 1234-5678</td></tr>
+      <tr><td class="clabel">新闻热线</td><td><span id="egg-phone" style="cursor:default;" title="？">(0XXX) 1234-5679</span></td></tr>
+      <tr><td class="clabel">读者来信</td><td>边城市新闻路12号 读者来信部收</td></tr>
+      <tr><td class="clabel">广告业务</td><td>(0XXX) 1234-5680</td></tr>
+      <tr><td class="clabel">技术部</td><td>分机 8042（内部系统维护、档案查询技术支持）</td></tr>
+      <tr><td class="clabel">财务处</td><td>分机 8051（档案查阅费缴费咨询，地址：新闻路12号3楼301室）</td></tr>
+    </table>
+
+    <h3>▸ 新闻线索征集</h3>
+    <p style="text-indent:2em;font-size:13px;color:#4a4a4a;">
+      边城日报社长期征集新闻线索，欢迎广大读者提供报道素材。如您了解任何未解决的谜案、都市传说、历史悬案或奇异事件，请通过以上方式与我们联系。线索一经采用，稿酬从优。
+    </p>
+    <p style="font-size:11px;color:#6a6a6a;margin-top:8px;">
+      <em>本报尤其关注以下类型事件：历史未解之谜、民间灵异传说、科考失踪案件、考古奇异发现。如果您有相关线索，请在来信信封上标注"深度调查部收"。</em>
+    </p>
+
+    <div class="contact-note">
+      <strong>📋 技术部特别说明：</strong><br>
+      如果您是本报记者且需要登录内部存档查询系统，请使用首页底部的「内部系统入口」链接。<br>
+      登录凭证与您本人的记者档案相关联。格式沿用旧制。<br>
+      如需帮助，请自行查阅相关事件的公开资料。
+    </div>
+
+  </div>
+
+  <hr class="divider">
+  <script>
+document.getElementById('egg-phone').addEventListener('click',function(){catEgg.show(6);});
+</script>
+<div class="footer-bar">
+    <a href="index.html" style="color:#5a4a3a;">← 返回首页</a> &nbsp;|&nbsp;
+    <a href="login.html" style="color:#5a4a3a;">内部系统入口</a> &nbsp;|&nbsp;
+    <a href="notes.html" style="color:#6a6a5a;">记者手记</a>
+  </div>
+</div>
+
+<!-- 
+  你找到了「联系我们」页面。
+  报社地址、电话均为虚构。
+  
+  提示：如果你在寻找解密线索——
+  技术部特别说明中已经给出了下一步的方向。
+  回到首页，点击「内部系统入口」。
+  
+  或者，如果你已经到了登录页——
+  记者编号和密码去百度百科「彭加木」找。
+-->
+</body>
+</html>

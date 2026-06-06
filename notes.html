@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>记者手记 · 边城日报社</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/loader.js"></script>
+  <script src="assets/easter-egg.js"></script>
+  <style>
+    .notes-container {
+      padding: 20px;
+    }
+    .notes-header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .notes-header h2 {
+      font-size: 18px;
+      color: #3a2010;
+      font-family: "SimHei","黑体",sans-serif;
+      letter-spacing: 2px;
+      margin: 0;
+    }
+    .notes-header p {
+      font-size: 11px;
+      color: #7a6a5a;
+      margin: 2px 0 0;
+    }
+
+    /* 提示卡片 */
+    .hint-cards {
+      margin-bottom: 16px;
+    }
+    .hint-card {
+      border: 1px solid #c0b090;
+      background: #fdf9f0;
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+      position: relative;
+    }
+    .hint-card:hover {
+      background: #fef8e0;
+    }
+    .hint-card .card-title {
+      font-weight: bold;
+      color: #5a3a10;
+      margin-bottom: 2px;
+      font-size: 13px;
+    }
+    .hint-card .card-content {
+      color: #5a5a5a;
+      line-height: 1.6;
+    }
+    .hint-card .card-toggle {
+      position: absolute;
+      right: 14px;
+      top: 10px;
+      font-size: 11px;
+      color: #8a7a6a;
+    }
+    .hint-card .card-detail {
+      display: none;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dotted #c8b898;
+      color: #4a4a4a;
+    }
+    .hint-card.open .card-detail {
+      display: block;
+    }
+    .hint-card.open .card-toggle {
+      transform: rotate(180deg);
+    }
+
+    /* 记事本 */
+    .notepad {
+      border: 2px solid #b0a080;
+      background: #fefcf4;
+      padding: 0;
+    }
+    .notepad-toolbar {
+      padding: 6px 10px;
+      background: #ece4d4;
+      border-bottom: 1px solid #c0b090;
+      font-size: 11px;
+      text-align: right;
+    }
+    .notepad-toolbar button {
+      font-size: 11px;
+      font-family: "SimSun","宋体",serif;
+      padding: 2px 10px;
+      border: 1px outset #c0b8a8;
+      background: #d8ccb4;
+      color: #3a2010;
+      cursor: pointer;
+      margin-left: 4px;
+    }
+    .notepad-toolbar button:active {
+      border-style: inset;
+    }
+    .notepad-toolbar .auto-save {
+      float: left;
+      color: #6a8a4a;
+      font-weight: bold;
+    }
+    #notes-area {
+      width: 100%;
+      min-height: 360px;
+      padding: 14px;
+      font-family: "FangSong","仿宋","SimSun","宋体",serif;
+      font-size: 14px;
+      line-height: 2;
+      border: none;
+      background: repeating-linear-gradient(
+        0deg,
+        #fefcf4 0px,
+        #fefcf4 31px,
+        #e8e0d0 31px,
+        #e8e0d0 32px
+      );
+      resize: vertical;
+      outline: none;
+      color: #2a1a0a;
+    }
+    #notes-area:focus {
+      background: repeating-linear-gradient(
+        0deg,
+        #fffff8 0px,
+        #fffff8 31px,
+        #e8e0d0 31px,
+        #e8e0d0 32px
+      );
+    }
+  </style>
+</head>
+<body>
+
+<div class="system-container">
+
+  <div class="header-bar">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="60" align="center" valign="middle">
+          <div class="logo-placeholder">记</div>
+        </td>
+        <td align="center" valign="middle">
+          <h1 class="system-title">边城日报社 · 记者手记</h1>
+          <span class="system-ver">调查笔记 · 线索记录</span>
+        </td>
+        <td width="60" align="center" valign="middle">
+          <div class="logo-placeholder">者</div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <div class="notes-container">
+
+    <div class="notes-header">
+      <h2>📓 记者调查手记</h2>
+      <p>记录你在解密过程中发现的所有线索。笔记自动保存在浏览器中，刷新不会丢失。</p>
+    </div>
+
+    <!-- 线索提示卡片 -->
+    <div class="hint-cards">
+
+      <div class="hint-card" onclick="this.classList.toggle('open')">
+        <div class="card-title">🔑 登录凭证</div>
+        <div class="card-content">记者编号和查询密码是什么？</div>
+        <div class="card-toggle">▼</div>
+        <div class="card-detail">
+          记者编号格式：<strong>姓名拼音缩写-事件日期</strong><br>
+          查询密码格式：<strong>事件关键日期 YYYYMMDD</strong><br>
+          <br>
+          参考资料：百度百科「彭加木」词条<br>
+          核心信息：<strong>姓名拼音</strong> + <strong>失踪日期</strong>
+        </div>
+      </div>
+
+      <div class="hint-card" onclick="this.classList.toggle('open')">
+        <div class="card-title">📍 关键坐标</div>
+        <div class="card-content">科考队营地在哪？坐标是多少？</div>
+        <div class="card-toggle">▼</div>
+        <div class="card-detail">
+          坐标藏在报道页面中，被黑色方块遮挡。<br>
+          查看页面源代码可以看到被遮挡的真实文字。<br>
+          <br>
+          验证方式：百度地图搜索「<strong>库木库都克</strong>」
+        </div>
+      </div>
+
+      <div class="hint-card" onclick="this.classList.toggle('open')">
+        <div class="card-title">🔐 案件终结码</div>
+        <div class="card-content">终结码怎么拼？</div>
+        <div class="card-toggle">▼</div>
+        <div class="card-detail">
+          终结码格式：<strong>失踪日期-纬度前四位-经度前四位</strong><br>
+          <br>
+          规则来源：系统样式表（style.css）中的技术部备忘<br>
+          坐标来源：报道页面中被遮挡的数据
+        </div>
+      </div>
+
+      <div class="hint-card" onclick="this.classList.toggle('open')">
+        <div class="card-title">🗺️ 外部参考链接</div>
+        <div class="card-content">去这些网站找线索</div>
+        <div class="card-toggle">▼</div>
+        <div class="card-detail">
+          · <a href="https://baike.baidu.com/item/%E5%BD%AD%E5%8A%A0%E6%9C%A8" target="_blank" rel="noopener">彭加木 — 百度百科</a><br>
+          · <a href="https://zh.wikipedia.org/wiki/%E5%BD%AD%E5%8A%A0%E6%9C%A8" target="_blank" rel="noopener">彭加木 — 维基百科</a><br>
+          · <a href="https://map.baidu.com/search/%E5%BA%93%E6%9C%A8%E5%BA%93%E9%83%BD%E5%85%8B" target="_blank" rel="noopener">库木库都克 — 百度地图</a><br>
+          · 报道页底部也有这些链接
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 记事本 -->
+    <div class="notepad">
+      <div class="notepad-toolbar">
+        <span class="auto-save" id="save-status">✅ 已加载</span>
+        <button onclick="clearNotes()">清空笔记</button>
+        <button onclick="exportNotes()">导出</button>
+      </div>
+      <textarea id="notes-area" placeholder="在此记录你的发现……&#10;&#10;例如：&#10;· 彭加木失踪日期：____&#10;· 拼音缩写：____&#10;· 坐标：____&#10;· 终结码：____&#10;· 其他线索：____"></textarea>
+    </div>
+
+    <p style="text-align:center;margin-top:10px;font-size:10px;color:#b0a090;">
+      笔记自动保存在浏览器本地存储中。清除浏览器数据会导致笔记丢失。
+    </p>
+
+  </div>
+
+  <hr class="divider">
+
+  <div class="footer-bar">
+    <a href="index.html" style="color:#5a4a3a;">← 返回报社首页</a> &nbsp;|&nbsp;
+    <a href="login.html" style="color:#5a4a3a;">内部系统入口</a> &nbsp;|&nbsp;
+    记者手记 · 仅本地保存
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    'use strict';
+
+    var notesArea = document.getElementById('notes-area');
+    var statusEl = document.getElementById('save-status');
+    var saveTimer = null;
+
+    // 加载已保存的笔记
+    try {
+      var saved = localStorage.getItem('bordernews-notes');
+      if (saved && notesArea) {
+        notesArea.value = saved;
+      }
+    } catch(e) {
+      // localStorage 不可用
+    }
+
+    // 自动保存（输入后 1 秒）
+    if (notesArea) {
+      notesArea.addEventListener('input', function() {
+        if (saveTimer) clearTimeout(saveTimer);
+        saveTimer = setTimeout(function() {
+          try {
+            localStorage.setItem('bordernews-notes', notesArea.value);
+            if (statusEl) {
+              statusEl.textContent = '💾 已保存 ' + new Date().toLocaleTimeString('zh-CN', {hour:'2-digit',minute:'2-digit'});
+            }
+          } catch(e) {
+            if (statusEl) statusEl.textContent = '⚠ 保存失败';
+          }
+        }, 800);
+      });
+    }
+
+    // 清空
+    window.clearNotes = function() {
+      if (confirm('确定清空所有笔记吗？此操作不可恢复。')) {
+        if (notesArea) notesArea.value = '';
+        try { localStorage.removeItem('bordernews-notes'); } catch(e) {}
+        if (statusEl) statusEl.textContent = '🗑 已清空';
+      }
+    };
+
+    // 导出
+    window.exportNotes = function() {
+      var text = notesArea ? notesArea.value : '';
+      if (!text.trim()) {
+        alert('笔记为空，没有可导出的内容。');
+        return;
+      }
+      var blob = new Blob([text], {type: 'text/plain;charset=utf-8'});
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = '记者手记_' + new Date().toISOString().slice(0,10) + '.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+    };
+
+    // 更新保存状态时间
+    if (saved && statusEl) {
+      statusEl.textContent = '📋 已加载历史笔记';
+    }
+
+    // 彩蛋 #12: 输入"喵喵喵"
+    if (notesArea) {
+      notesArea.addEventListener('input', function() {
+        if (this.value.indexOf('喵喵喵') >= 0) {
+          catEgg.show(12);
+          this.value = this.value.replace('喵喵喵', '🐱');
+        }
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

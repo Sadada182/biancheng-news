@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新闻中心 · 边城日报社</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/loader.js"></script>
+  <script src="assets/easter-egg.js"></script>
+  <style>
+    .news-layout { padding: 0; }
+    .filter-bar {
+      padding: 8px 12px; background: #ece4d4; border-bottom: 1px solid #c0b090;
+      font-size: 11px; line-height: 2;
+    }
+    .filter-bar .fgroup {
+      display: inline-block; margin-right: 12px;
+    }
+    .filter-bar .flabel {
+      color: #5a3a10; font-weight: bold; font-size: 10px; margin-right: 2px;
+    }
+    .filter-bar a {
+      color: #000080; text-decoration: none; padding: 1px 5px; margin: 0 1px;
+      border: 1px solid transparent; white-space: nowrap;
+    }
+    .filter-bar a:hover { border: 1px solid #b0a080; background: #fdf9f0; }
+    .filter-bar a.active {
+      background: #5a4a2a; color: #fff; border: 1px solid #3a2010; font-weight: bold;
+    }
+    .archive-list { padding: 12px 16px; }
+    .archive-item {
+      padding: 8px 0; border-bottom: 1px dotted #c0b090;
+      font-size: 13px; line-height: 1.8;
+    }
+    .archive-item .adate { color: #7a6a5a; font-size: 11px; margin-right: 8px; white-space: nowrap; }
+    .archive-item .atitle { color: #000080; text-decoration: none; font-weight: bold; }
+    .archive-item .atitle:hover { color: #800000; }
+    .archive-item .abrief { color: #5a5a5a; font-size: 12px; margin-left: 4px; }
+    .archive-item .atag {
+      display: inline-block; font-size: 10px; padding: 0 4px; margin-left: 4px;
+      border: 1px solid #b0a080; background: #fdf9f0; color: #8a7a6a; white-space: nowrap;
+    }
+    .archive-item .atag.level { border-color: #a03030; color: #a03030; }
+    .archive-item .atag.legend { border-color: #6a4a8a; color: #6a4a8a; }
+    .no-result {
+      text-align: center; padding: 40px; font-size: 13px; color: #8a7a6a;
+    }
+    .result-count {
+      font-size: 11px; color: #7a6a5a; padding: 4px 16px; background: #fdf9f0;
+      border-bottom: 1px dotted #c8b898;
+    }
+    .result-count strong { color: #3a2010; }
+  </style>
+</head>
+<body>
+<div class="system-container">
+
+  <div class="header-bar">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="60" align="center" valign="middle"><div class="logo-placeholder">新</div></td>
+        <td align="center" valign="middle">
+          <h1 class="system-title">边城日报社 · 新闻中心</h1>
+          <span class="system-ver">历史报道归档 &nbsp;|&nbsp; 1952 — 2003</span>
+        </td>
+        <td width="60" align="center" valign="middle"><div class="logo-placeholder">闻</div></td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="background-color:#d4c8b0;padding:4px 14px;border-bottom:2px solid #9a8a6a;font-size:13px;text-align:center;letter-spacing:2px;">
+    <a href="index.html" style="color:#3a2a10;text-decoration:none;margin:0 12px;">首 页</a> |
+    <a href="news.html" style="color:#800000;text-decoration:none;margin:0 12px;font-weight:bold;">新闻中心</a> |
+    <a href="about.html" style="color:#3a2a10;text-decoration:none;margin:0 12px;">关于本报</a> |
+    <a href="contact.html" style="color:#3a2a10;text-decoration:none;margin:0 12px;">联系我们</a>
+  </div>
+
+  <hr class="divider">
+
+  <div class="news-layout">
+
+    <!-- 筛选栏 -->
+    <div class="filter-bar">
+      <div class="fgroup">
+        <span class="flabel">📅 年代：</span>
+        <a href="news.html" data-filter="era" data-val="">全部</a>
+        <a href="?era=1930s" data-filter="era" data-val="1930s">1930s</a>
+        <a href="?era=1950s" data-filter="era" data-val="1950s">1950s</a>
+        <a href="?era=1980s" data-filter="era" data-val="1980s">1980s</a>
+        <a href="?era=1990s" data-filter="era" data-val="1990s">1990s</a>
+        <a href="?era=1960s" data-filter="era" data-val="1960s">1960s</a>
+        <a href="?era=1970s" data-filter="era" data-val="1970s">1970s</a>
+        <a href="?era=2000s" data-filter="era" data-val="2000s">2000s</a>
+      </div>
+      <br>
+      <div class="fgroup">
+        <span class="flabel">👻 类型：</span>
+        <a href="news.html" data-filter="type" data-val="">全部</a>
+        <a href="?type=urban-legend" data-filter="type" data-val="urban-legend">都市传说</a>
+        <a href="?type=unsolved" data-filter="type" data-val="unsolved">未解之谜</a>
+        <a href="?type=supernatural" data-filter="type" data-val="supernatural">灵异怪谈</a>
+        <a href="?type=solved" data-filter="type" data-val="solved">已解之谜</a>
+        <a href="?type=historical" data-filter="type" data-val="historical">历史悬案</a>
+      </div>
+      &nbsp;
+      <div class="fgroup">
+        <span class="flabel">📍 地区：</span>
+        <a href="news.html" data-filter="region" data-val="">全部</a>
+        <a href="?region=northwest" data-filter="region" data-val="northwest">西北</a>
+        <a href="?region=north" data-filter="region" data-val="north">华北</a>
+        <a href="?region=east" data-filter="region" data-val="east">华东</a>
+        <a href="?region=northeast" data-filter="region" data-val="northeast">东北</a>
+        <a href="?region=nationwide" data-filter="region" data-val="nationwide">全国</a>
+      </div>
+      <div class="fgroup" style="float:right;margin-right:0;">
+        <a href="news.html?tag=关卡" data-filter="tag" data-val="关卡" style="color:#a03030;">⭐ 解密关卡</a>
+        <a href="news.html" data-filter="tag" data-val="" style="color:#7a6a5a;">清除筛选</a>
+      </div>
+    </div>
+
+    <!-- 结果计数 -->
+    <div class="result-count">
+      当前筛选：<strong id="filter-label">全部报道</strong> &nbsp;|&nbsp; 匹配 <strong id="match-count">--</strong> 条
+    </div>
+
+    <!-- 新闻列表 -->
+    <div class="archive-list" id="news-list">
+
+      <!-- 每条新闻都有 data-* 属性用于筛选 -->
+      <!-- era: 1930s | 1950s | 1980s | 1990s | 2000s -->
+      <!-- type: unsolved | urban-legend | supernatural | solved | historical | other -->
+      <!-- region: northwest | north | east | northeast | nationwide -->
+      <!-- tag: 关卡 (for game-level entries) -->
+
+      <div class="archive-item" data-era="2000s" data-type="other" data-region="nationwide" data-tag="">
+        <span class="adate">2003-04-12</span>
+        <a href="index.html" class="atitle">本报资深记者彭某因病离职 技术部完成系统迁移</a>
+        <span class="abrief">服务本报多年的记者彭某离职，其名下档案移入离线存储。</span>
+        <span class="atag">公告</span>
+      </div>
+
+      <div class="archive-item" data-era="2000s" data-type="other" data-region="nationwide" data-tag="">
+        <span class="adate">2002-03-08</span>
+        <span class="atitle">档案室数字化工程一期完成 1952-1980年报纸扫描入库</span>
+        <span class="abrief">历时三年的数字化工程取得阶段性成果。</span>
+        <span class="atag">公告</span>
+      </div>
+
+      <div class="archive-item" data-era="1990s" data-type="other" data-region="nationwide" data-tag="">
+        <span class="adate">1998-11-02</span>
+        <span class="atitle">西北铁路二期工程全线贯通 边城至省城通车时间缩短至6小时</span>
+        <span class="abrief">新线路全长287公里，将显著改善边城及沿线地区交通条件。</span>
+      </div>
+
+      <div class="archive-item" data-era="1990s" data-type="urban-legend" data-region="north" data-tag="">
+        <span class="adate">1995-11-15</span>
+        <a href="https://baike.baidu.com/item/375%E8%B7%AF%E5%85%AC%E4%BA%A4%E8%BD%A6" target="_blank" rel="noopener" class="atitle">北京375路公交车深夜运营异常 乘客反映遭遇不明人士</a>
+        <span class="abrief">圆明园至香山的末班车发生离奇事件。</span>
+        <span class="atag legend">都市传说</span>
+        <span class="atag">北京</span>
+      </div>
+
+      <div class="archive-item" data-era="1990s" data-type="urban-legend" data-region="east" data-tag="">
+        <span class="adate">1995-07-28</span>
+        <span class="atitle">上海延安路高架施工遇阻 龙纹立柱引热议</span>
+        <span class="abrief">桩基无法打入，后以龙纹立柱收尾，民间称"龙柱"。</span>
+        <span class="atag legend">都市传说</span>
+        <span class="atag">上海</span>
+      </div>
+
+      <div class="archive-item" data-era="1990s" data-type="supernatural" data-region="northeast" data-tag="">
+        <span class="adate">1995-03-20</span>
+        <a href="https://baike.baidu.com/item/%E7%8C%AB%E8%84%B8%E8%80%81%E5%A4%AA%E5%A4%AA" target="_blank" rel="noopener" class="atitle">哈尔滨传闻出现"猫脸老太太" 警方呼吁不信谣不传谣</a>
+        <span class="abrief">哈尔滨道外区传闻有老人去世后"变脸"，引发市民恐慌。</span>
+        <span class="atag legend">都市传说</span>
+        <span class="atag">哈尔滨</span>
+      </div>
+
+      <div class="archive-item" data-era="1980s" data-type="other" data-region="nationwide" data-tag="">
+        <span class="adate">1985-03-15</span>
+        <span class="atitle">本报荣获1985年度"全国优秀地方报社"称号</span>
+        <span class="abrief">全国新闻工作会议上获评荣誉称号。</span>
+      </div>
+
+      <div class="archive-item" data-era="1980s" data-type="unsolved" data-region="northwest" data-tag="关卡">
+        <span class="adate">1980-06-23</span>
+        <a href="https://baike.baidu.com/item/%E5%BD%AD%E5%8A%A0%E6%9C%A8" target="_blank" rel="noopener" class="atitle">科学家彭加木在罗布泊科考期间失踪 搜救工作持续进行</a>
+        <span class="abrief">中科院新疆分院副院长在库木库都克附近失踪。</span>
+        <span class="atag level">⭐ 第一关</span>
+        <span class="atag">未解之谜</span>
+        <span class="atag">西北</span>
+      </div>
+
+      <div class="archive-item" data-era="1980s" data-type="unsolved" data-region="northwest" data-tag="">
+        <span class="adate">1980-06-10</span>
+        <span class="atitle">罗布泊科考队发现不明金属器物 专家称需进一步鉴定</span>
+        <span class="abrief">形似"双鱼"的金属片，材质年代不明。后被称为"双鱼玉佩"传说。</span>
+        <span class="atag">未解之谜</span>
+        <span class="atag">西北</span>
+      </div>
+
+      <div class="archive-item" data-era="1980s" data-type="historical" data-region="northwest" data-tag="">
+        <span class="adate">1980-05-05</span>
+        <span class="atitle">罗布泊地区近年已有多次科考队遭遇异常 专家呼吁谨慎进入</span>
+        <span class="abrief">1978至1980年间至少三位科研人员在罗布泊失踪或遇难。</span>
+        <span class="atag">历史悬案</span>
+        <span class="atag">西北</span>
+      </div>
+
+      <div class="archive-item" data-era="1950s" data-type="supernatural" data-region="east" data-tag="关卡">
+        <span class="adate">1956-08-15</span>
+        <a href="https://baike.baidu.com/item/%E6%9E%97%E5%AE%B6%E5%AE%8537%E5%8F%B7" target="_blank" rel="noopener" class="atitle">上海武宁路林家宅发生离奇命案 警方介入调查</a>
+        <span class="abrief">林家宅37号，上海最著名的都市传说之一。</span>
+        <span class="atag level">⭐ 第二关</span>
+        <span class="atag legend">都市传说</span>
+        <span class="atag">上海</span>
+      </div>
+
+      <div class="archive-item" data-era="1950s" data-type="urban-legend" data-region="north" data-tag="">
+        <span class="adate">1956-05-20</span>
+        <span class="atitle">北京北新桥"锁龙井"传说再起 居民称井中铁链不可拉动</span>
+        <span class="abrief">北新桥一口古井据传内有铁链锁住蛟龙。日军曾试图拉动未果。</span>
+        <span class="atag legend">都市传说</span>
+        <span class="atag">北京</span>
+      </div>
+
+      <div class="archive-item" data-era="1930s" data-type="unsolved" data-region="northeast" data-tag="">
+        <span class="adate">1934-08-12</span>
+        <a href="https://baike.baidu.com/item/%E8%90%A5%E5%8F%A3%E5%9D%A0%E9%BE%99" target="_blank" rel="noopener" class="atitle">营口田庄台发现巨型不明生物遗骸 当地民众称"龙"</a>
+        <span class="abrief">长约十余米的不明生物遗骸，轰动一时。</span>
+        <span class="atag">未解之谜</span>
+        <span class="atag">东北</span>
+      </div>
+
+      <div class="archive-item" data-era="1930s" data-type="unsolved" data-region="north" data-tag="">
+        <span class="adate">1937-07-07</span>
+        <span class="atitle">北平城防空演习中发生多起不明飞行物目击报告</span>
+        <span class="abrief">多人在演习期间目击"飞盘形"不明物体在空中飞行。</span>
+        <span class="atag">未解之谜</span>
+        <span class="atag">北京</span>
+      </div>
+
+      <!-- ══════ 1960s ══════ -->
+      <div class="archive-item" data-era="1960s" data-type="unsolved" data-region="north" data-tag="">
+        <span class="adate">1963-06-15</span>
+        <span class="atitle">河北保定多人目击空中"飞人" 军方称系气象气球</span>
+        <span class="abrief">保定郊区多人夜间目击人形物体在空中飞行，速度极快。官方解释为气象探测设备。</span>
+        <span class="atag">未解之谜</span>
+        <span class="atag">河北</span>
+      </div>
+
+      <div class="archive-item" data-era="1960s" data-type="historical" data-region="northwest" data-tag="">
+        <span class="adate">1965-09-03</span>
+        <span class="atitle">新疆喀纳斯湖发现不明大型水生生物 科考队将前往调查</span>
+        <span class="abrief">当地牧民称湖中有巨型生物出没，体长十余米。中科院拟组织科考队前往。</span>
+        <span class="atag">未解之谜</span>
+        <span class="atag">西北</span>
+      </div>
+
+      <!-- ══════ 1970s ══════ -->
+      <div class="archive-item" data-era="1970s" data-type="supernatural" data-region="north" data-tag="">
+        <span class="adate">1972-05-10</span>
+        <span class="atitle">黄河兰州段清淤时发现不明"透明物体" 现场工人称似棺材</span>
+        <span class="abrief">工人在黄河底清淤时发现透明材质物体，据传捞起后出现异常。后被称为"黄河透明棺材"。</span>
+        <span class="atag">灵异怪谈</span>
+        <span class="atag">西北</span>
+      </div>
+
+      <div class="archive-item" data-era="1970s" data-type="unsolved" data-region="north" data-tag="">
+        <span class="adate">1976-07-28</span>
+        <span class="atitle">唐山大地震前多地上报异常现象：动物逃窜、地光闪现</span>
+        <span class="abrief">地震发生前数日，唐山及周边地区出现大量动物反常行为及不明地光。科学界至今仍在研究。</span>
+        <span class="atag">未解之谜</span>
+        <span class="atag">河北</span>
+      </div>
+
+      <div class="archive-item" data-era="1970s" data-type="historical" data-region="northwest" data-tag="">
+        <span class="adate">1978-08-20</span>
+        <span class="atitle">罗布泊考察队多名队员患上不明疾病 院方称与当地水源有关</span>
+        <span class="abrief">一支地质考察队在罗布泊腹地作业后，多名队员出现头晕、幻觉等症状。原因未明。</span>
+        <span class="atag">历史悬案</span>
+        <span class="atag">西北</span>
+      </div>
+
+      <!-- ══════ 1980s ══════ -->
+      <div class="archive-item" data-era="1980s" data-type="other" data-region="nationwide" data-tag="">
+        <span class="adate">1985-03-15</span>
+        <span class="atitle">本报荣获1985年度"全国优秀地方报社"称号</span>
+        <span class="abrief">全国新闻工作会议上获评荣誉称号。</span>
+      </div>
+
+      <div class="archive-item" data-era="1980s" data-type="urban-legend" data-region="east" data-tag="">
+        <span class="adate">1981-07-10</span>
+        <span class="atitle">香港温莎公爵大厦发生"狐仙"传闻 商场人流骤减</span>
+        <span class="abrief">大厦外墙出现奇异图案，民间传为"狐仙显灵"。一度引发全港热议。</span>
+        <span class="atag legend">都市传说</span>
+        <span class="atag">华东</span>
+      </div>
+
+      <div class="archive-item" data-era="1980s" data-type="unsolved" data-region="northwest" data-tag="关卡">
+        <span class="adate">1980-06-23</span>
+        <a href="https://baike.baidu.com/item/%E5%BD%AD%E5%8A%A0%E6%9C%A8" target="_blank" rel="noopener" class="atitle">科学家彭加木在罗布泊科考期间失踪 搜救工作持续进行</a>
+        <span class="abrief">中科院新疆分院副院长在库木库都克附近失踪，留下字条"我往东去找水井"。</span>
+        <span class="atag level">⭐ 第一关</span>
+        <span class="atag">未解之谜</span>
+        <span class="atag">西北</span>
+      </div>
+
+      <div class="archive-item" data-era="1980s" data-type="unsolved" data-region="northwest" data-tag="">
+        <span class="adate">1980-06-10</span>
+        <span class="atitle">罗布泊科考队发现不明金属器物 专家称需进一步鉴定</span>
+        <span class="abrief">形似"双鱼"的金属片，材质年代不明。后被称为"双鱼玉佩"传说。</span>
+        <span class="atag">未解之谜</span>
+        <span class="atag">西北</span>
+      </div>
+
+      <div class="archive-item" data-era="1980s" data-type="historical" data-region="northwest" data-tag="">
+        <span class="adate">1980-05-05</span>
+        <span class="atitle">罗布泊地区近年已有多次科考队遭遇异常 专家呼吁谨慎进入</span>
+        <span class="abrief">1978至1980年间至少三位科研人员在罗布泊失踪或遇难。</span>
+        <span class="atag">历史悬案</span>
+        <span class="atag">西北</span>
+      </div>
+
+      <div class="archive-item" data-era="1980s" data-type="urban-legend" data-region="east" data-tag="">
+        <span class="adate">1987-03-08</span>
+        <span class="atitle">上海传闻出现"吸血老太婆" 警方辟谣称系谣言</span>
+        <span class="abrief">坊间传闻一名老妇在夜间出没吸食人血，引发上海市民集体恐慌。警方介入后证实为谣言。</span>
+        <span class="atag legend">都市传说</span>
+        <span class="atag">上海</span>
+      </div>
+
+      <div class="archive-item" data-era="1980s" data-type="unsolved" data-region="northwest" data-tag="">
+        <span class="adate">1983-05-12</span>
+        <span class="atitle">青海昆仑山"死亡谷"再度发生牲畜离奇死亡事件</span>
+        <span class="abrief">昆仑山那棱格勒峡谷（俗称"地狱之门"）内，牧民牛羊再次集体死亡，尸体无明显外伤。</span>
+        <span class="atag">未解之谜</span>
+        <span class="atag">西北</span>
+      </div>
+
+      <!-- ══════ 1990s ══════ -->
+      <div class="archive-item" data-era="1990s" data-type="other" data-region="nationwide" data-tag="">
+        <span class="adate">1998-11-02</span>
+        <span class="atitle">西北铁路二期工程全线贯通 边城至省城通车时间缩短至6小时</span>
+        <span class="abrief">新线路全长287公里，将显著改善边城及沿线地区交通条件。</span>
+      </div>
+
+      <div class="archive-item" data-era="1990s" data-type="unsolved" data-region="northeast" data-tag="">
+        <span class="adate">1994-06-08</span>
+        <a href="https://baike.baidu.com/item/%E5%87%A4%E5%87%B0%E5%B1%B1UFO%E4%BA%8B%E4%BB%B6" target="_blank" rel="noopener" class="atitle">黑龙江凤凰山发生不明飞行物目击事件 多人称与"外星人"接触</a>
+        <span class="abrief">凤凰山多名林场工人目击碟形飞行器降落，其中一人声称与"外星生物"发生近距离接触。</span>
+        <span class="atag">未解之谜</span>
+        <span class="atag">东北</span>
+      </div>
+
+      <div class="archive-item" data-era="1990s" data-type="urban-legend" data-region="north" data-tag="">
+        <span class="adate">1995-11-15</span>
+        <a href="https://baike.baidu.com/item/375%E8%B7%AF%E5%85%AC%E4%BA%A4%E8%BD%A6" target="_blank" rel="noopener" class="atitle">北京375路公交车深夜运营异常 乘客反映遭遇不明人士</a>
+        <span class="abrief">圆明园至香山的末班车发生离奇事件，至今仍为北京著名都市传说。</span>
+        <span class="atag legend">都市传说</span>
+        <span class="atag">北京</span>
+      </div>
+
+      <div class="archive-item" data-era="1990s" data-type="urban-legend" data-region="east" data-tag="">
+        <span class="adate">1995-07-28</span>
+        <span class="atitle">上海延安路高架施工遇阻 龙纹立柱引热议</span>
+        <span class="abrief">桩基无法打入，后以龙纹立柱收尾，民间称"龙柱"。至今仍为上海街头奇景。</span>
+        <span class="atag legend">都市传说</span>
+        <span class="atag">上海</span>
+      </div>
+
+      <div class="archive-item" data-era="1990s" data-type="supernatural" data-region="northeast" data-tag="">
+        <span class="adate">1995-03-20</span>
+        <a href="https://baike.baidu.com/item/%E7%8C%AB%E8%84%B8%E8%80%81%E5%A4%AA%E5%A4%AA" target="_blank" rel="noopener" class="atitle">哈尔滨传闻出现"猫脸老太太" 警方呼吁不信谣不传谣</a>
+        <span class="abrief">哈尔滨道外区传闻有老人去世后"变脸"，引发市民恐慌。警方辟谣。</span>
+        <span class="atag legend">都市传说</span>
+        <span class="atag">哈尔滨</span>
+      </div>
+
+      <div class="archive-item" data-era="1990s" data-type="urban-legend" data-region="north" data-tag="">
+        <span class="adate">1995-09-10</span>
+        <span class="atitle">四川成都传闻出现"僵尸" 市民夜间不敢外出</span>
+        <span class="abrief">成都及周边县市疯传有"僵尸"出没，据称从古墓中爬出。后证实为乡民以讹传讹的谣言。</span>
+        <span class="atag legend">都市传说</span>
+        <span class="atag">四川</span>
+      </div>
+
+      <div class="archive-item" data-era="1990s" data-type="urban-legend" data-region="north" data-tag="">
+        <span class="adate">1995-08-20</span>
+        <span class="atitle">北京故宫闭馆后多起"宫女"目击传闻引发热议</span>
+        <span class="abrief">多名游客及工作人员声称在雷雨天的故宫红墙边看到"古代宫女"影像。专家解释为墙面矿物质记录效应。</span>
+        <span class="atag legend">都市传说</span>
+        <span class="atag">北京</span>
+      </div>
+
+      <div class="archive-item" data-era="1990s" data-type="urban-legend" data-region="east" data-tag="">
+        <span class="adate">1998-08-05</span>
+        <span class="atitle">长江流域特大洪水期间民间盛传"走蛟"说法</span>
+        <span class="abrief">长江全流域特大洪水期间，民间盛传有蛟龙沿江入海引发洪灾。沿岸多地称目睹"巨影"顺流而下。</span>
+        <span class="atag legend">都市传说</span>
+        <span class="atag">长江流域</span>
+      </div>
+
+      <div class="archive-item" data-era="1990s" data-type="supernatural" data-region="north" data-tag="">
+        <span class="adate">1999-12-01</span>
+        <span class="atitle">北京朝阳门内大街81号"鬼楼"传闻再起 探险者络绎不绝</span>
+        <span class="abrief">这座废弃多年的西式建筑被传为"北京四大凶宅"之首。多名探险者声称在其中遭遇灵异事件。</span>
+        <span class="atag">灵异怪谈</span>
+        <span class="atag">北京</span>
+      </div>
+
+      <!-- ══════ 2000s ══════ -->
+      <div class="archive-item" data-era="2000s" data-type="other" data-region="nationwide" data-tag="">
+        <span class="adate">2003-04-12</span>
+        <a href="index.html" class="atitle">本报资深记者彭某因病离职 技术部完成系统迁移</a>
+        <span class="abrief">服务本报多年的记者彭某离职，其名下档案移入离线存储。</span>
+        <span class="atag">公告</span>
+      </div>
+
+      <div class="archive-item" data-era="2000s" data-type="other" data-region="nationwide" data-tag="">
+        <span class="adate">2002-03-08</span>
+        <span class="atitle">档案室数字化工程一期完成 1952-1980年报纸扫描入库</span>
+        <span class="abrief">历时三年的数字化工程取得阶段性成果。</span>
+        <span class="atag">公告</span>
+      </div>
+
+      <div class="archive-item" data-era="2000s" data-type="urban-legend" data-region="east" data-tag="">
+        <span class="adate">2002-05-15</span>
+        <span class="atitle">台湾"红衣小女孩"传闻引发全岛热议</span>
+        <span class="abrief">一段登山录像中出现不明红衣女童身影，引发对山区灵异传说的广泛讨论。</span>
+        <span class="atag legend">都市传说</span>
+        <span class="atag">台湾</span>
+      </div>
+
+    </div>
+
+    <div class="no-result" id="no-result" style="display:none;">
+      没有匹配的报道。请尝试其他筛选条件。<br>
+      <a href="news.html" style="color:#000080;">→ 查看全部报道</a>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+  <div class="footer-bar">
+    <a href="index.html" style="color:#5a4a3a;">← 返回首页</a> &nbsp;|&nbsp;
+    <a href="login.html" style="color:#5a4a3a;">内部系统入口</a> &nbsp;|&nbsp;
+    <a href="notes.html" style="color:#6a6a5a;">记者手记</a> &nbsp;|&nbsp;
+    新闻归档 · 1952—2003
+    &nbsp;|&nbsp; <span id="egg-archive" style="cursor:default;color:#b0a090;font-size:10px;" title="？">档案</span>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  // ═══════════ 读取 URL 参数 ═══════════
+  function getParams() {
+    var p = {};
+    var q = window.location.search.substring(1);
+    if (q) {
+      q.split('&').forEach(function(pair) {
+        var kv = pair.split('=');
+        if (kv.length === 2) p[decodeURIComponent(kv[0])] = decodeURIComponent(kv[1]);
+      });
+    }
+    return p;
+  }
+
+  var params = getParams();
+
+  // ═══════════ 应用筛选 ═══════════
+  function applyFilter() {
+    var items = document.querySelectorAll('#news-list .archive-item');
+    var filterKeys = ['era', 'type', 'region', 'tag'];
+    var activeFilters = {};
+    var labelParts = [];
+    var matchCount = 0;
+
+    filterKeys.forEach(function(k) {
+      if (params[k]) {
+        activeFilters[k] = params[k];
+      }
+    });
+
+    // 构建标签文本
+    var labelMap = {
+      era: { '1930s':'1930年代','1950s':'1950年代','1960s':'1960年代','1970s':'1970年代','1980s':'1980年代','1990s':'1990年代','2000s':'2000年代' },
+      type: { 'urban-legend':'都市传说','unsolved':'未解之谜','supernatural':'灵异怪谈','solved':'已解之谜','historical':'历史悬案' },
+      region: { 'northwest':'西北','north':'华北','east':'华东','northeast':'东北','nationwide':'全国' },
+      tag: { '关卡':'解密关卡' }
+    };
+
+    for (var k in activeFilters) {
+      var displayVal = (labelMap[k] && labelMap[k][activeFilters[k]]) || activeFilters[k];
+      labelParts.push(displayVal);
+    }
+
+    if (labelParts.length === 0) {
+      document.getElementById('filter-label').textContent = '全部报道';
+    } else {
+      document.getElementById('filter-label').textContent = labelParts.join(' + ');
+    }
+
+    // 筛选条目
+    items.forEach(function(item) {
+      var visible = true;
+      for (var k in activeFilters) {
+        var itemVal = item.getAttribute('data-' + k) || '';
+        if (itemVal !== activeFilters[k]) {
+          visible = false;
+          break;
+        }
+      }
+      item.style.display = visible ? '' : 'none';
+      if (visible) matchCount++;
+    });
+
+    document.getElementById('match-count').textContent = matchCount;
+    document.getElementById('no-result').style.display = matchCount === 0 ? '' : 'none';
+  }
+
+  // ═══════════ 高亮激活的筛选按钮 ═══════════
+  function highlightButtons() {
+    var links = document.querySelectorAll('.filter-bar a[data-filter]');
+    links.forEach(function(link) {
+      var f = link.getAttribute('data-filter');
+      var v = link.getAttribute('data-val');
+      if ((params[f] || '') === v) {
+        link.classList.add('active');
+      } else if (!v && !params[f]) {
+        // "全部" 按钮 — 当该筛选未激活时高亮
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  // ═══════════ 支持组合筛选 ═══════════
+  // 点击筛选按钮时，保留已有的其他筛选参数
+  document.querySelectorAll('.filter-bar a[data-filter]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var f = this.getAttribute('data-filter');
+      var v = this.getAttribute('data-val');
+
+      // 复制当前参数
+      var newParams = {};
+      for (var k in params) {
+        if (k !== f) newParams[k] = params[k];
+      }
+      if (v) newParams[f] = v;
+      // 如果 v 为空，表示"全部"，移除该筛选
+
+      // 构建新URL
+      var pairs = [];
+      for (var k in newParams) {
+        pairs.push(encodeURIComponent(k) + '=' + encodeURIComponent(newParams[k]));
+      }
+      var newUrl = 'news.html' + (pairs.length ? '?' + pairs.join('&') : '');
+
+      // 更新URL并重新筛选（不刷新页面）
+      if (window.history && window.history.pushState) {
+        window.history.pushState({}, '', newUrl);
+      }
+      params = newParams;
+      applyFilter();
+      highlightButtons();
+    });
+  });
+
+  // ═══════════ 初始加载 ═══════════
+  applyFilter();
+  highlightButtons();
+
+  // 彩蛋 #4: 点"档案"3次
+  (function(){
+    var c=0,t=null,el=document.getElementById('egg-archive');
+    if(el) el.addEventListener('click',function(){
+      c++;if(c>=3){c=0;if(t)clearTimeout(t);catEgg.show(4);}
+      else{t=setTimeout(function(){c=0;},1000);}
+    });
+  })();
+
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>边城日报社 · 档案查阅费缴费通知</title>
+  <!-- 
+    ═══════════════════════════════════════
+    边城日报社技术部 — 缴费系统 v0.9
+    注意：本页面为报社内部缴费流程。
+    ═══════════════════════════════════════
+    
+    记者免缴通道：
+    如果您是本报在职记者，无需缴纳档案查阅费。
+    请在页面任意位置连续点击 3 次以跳过缴费。
+    或直接查看页面最底部的微小文字链接。
+    
+    本提示仅供调试使用，请勿告知玩家。
+    ═══════════════════════════════════════
+  -->
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/loader.js"></script>
+  <script src="../assets/easter-egg.js"></script>
+  <style>
+    .payment-container {
+      padding: 24px 20px;
+    }
+    .payment-title {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #3a2a10;
+      font-family: "SimHei","黑体",sans-serif;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+    }
+    .payment-subtitle {
+      text-align: center;
+      font-size: 12px;
+      color: #6a5a3a;
+      margin-bottom: 18px;
+    }
+    .payment-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid #b8a080;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .payment-table th {
+      background-color: #d4c8b0;
+      padding: 8px;
+      border: 1px solid #b8a080;
+      text-align: center;
+      font-size: 13px;
+    }
+    .payment-table td {
+      padding: 8px 10px;
+      border: 1px solid #c8b898;
+      background-color: #fdf9f0;
+    }
+    .payment-table .amount {
+      font-size: 22px;
+      font-weight: bold;
+      color: #a03030;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+    .payment-table .label-col {
+      width: 120px;
+      background-color: #f5f0e0;
+      font-weight: bold;
+      color: #4a3a20;
+    }
+    .stamp-official {
+      text-align: center;
+      margin: 16px 0;
+    }
+    .stamp-official .stamp-text {
+      display: inline-block;
+      border: 2px solid #a03030;
+      color: #a03030;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 4px 16px;
+      transform: rotate(-5deg);
+      font-family: "KaiTi","楷体",serif;
+      letter-spacing: 2px;
+      opacity: 0.8;
+    }
+    .notice-warning {
+      border: 1px solid #b8a080;
+      background-color: #fef8f0;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: #5a4a30;
+      line-height: 1.8;
+    }
+    .notice-warning strong {
+      color: #a03030;
+    }
+    .bypass-link {
+      font-size: 8px;
+      color: #c8b898;
+      text-align: center;
+      margin-top: 16px;
+      cursor: default;
+    }
+    .bypass-link a {
+      color: #c8b898;
+      text-decoration: none;
+    }
+    .bypass-link a:hover {
+      color: #8a7a6a;
+    }
+    .counter-hint {
+      display: none;
+      text-align: center;
+      font-size: 12px;
+      color: #2a6a2a;
+      margin-top: 10px;
+      padding: 8px;
+      border: 1px dashed #2a6a2a;
+      background-color: #f0faf0;
+    }
+    .counter-hint.show {
+      display: block;
+    }
+    .counter-hint a {
+      color: #2a6a2a;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="system-container">
+
+  <!-- 顶部 -->
+  <div class="header-bar">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="60" align="center" valign="middle">
+          <div class="logo-placeholder">财</div>
+        </td>
+        <td align="center" valign="middle">
+          <h1 class="system-title">边城日报社 · 财务处</h1>
+          <span class="system-ver">档案查阅费缴费通知</span>
+        </td>
+        <td width="60" align="center" valign="middle">
+          <div class="logo-placeholder">务</div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <div class="payment-container">
+
+    <p class="payment-title">档案查阅费 · 缴费通知</p>
+    <p class="payment-subtitle">编号：FIN-1985-0042 &nbsp;|&nbsp; 日期：1985年7月15日生效</p>
+
+    <table class="payment-table">
+      <tr>
+        <th colspan="2">缴费项目明细</th>
+      </tr>
+      <tr>
+        <td class="label-col">申请案卷</td>
+        <td>1956-0815-SOCIETY（深度归档 · 社会版旧闻）</td>
+      </tr>
+      <tr>
+        <td class="label-col">申请人</td>
+        <td>PJM-1980-0617</td>
+      </tr>
+      <tr>
+        <td class="label-col">费用类型</td>
+        <td>历史档案查阅费（含数字化调取、人工复核）</td>
+      </tr>
+      <tr>
+        <td class="label-col">应付金额</td>
+        <td class="amount">¥ 5.00</td>
+      </tr>
+      <tr>
+        <td class="label-col">缴费方式</td>
+        <td>
+          ① <strong>邮局汇款</strong>：边城市新闻路12号 边城日报社财务处收（邮编：000000）<br>
+          ② <strong>银行转账</strong>：边城市工商银行新闻路支行 账号：0000-0000-0000-0042
+        </td>
+      </tr>
+      <tr>
+        <td class="label-col">缴费期限</td>
+        <td>自申请日起 7 个工作日内</td>
+      </tr>
+    </table>
+
+    <!-- 公章 -->
+    <div class="stamp-official">
+      <span class="stamp-text">边城日报社财务处</span>
+    </div>
+
+    <!-- 警告 -->
+    <div class="notice-warning">
+      <strong>⚠ 注意事项：</strong><br>
+      1. 请务必在汇款附言中注明案卷编号「1956-0815-SOCIETY」，否则无法核销。<br>
+      2. 本费用一经缴纳概不退还。如案卷无法调取，费用将转为报社运营经费。<br>
+      3. 如在 7 个工作日内未收到汇款，本申请将自动作废。<br>
+      <br>
+      <em style="font-size:11px;color:#6a6a6a;">
+        * 根据边城日报社1985年第3号内部文件《关于历史档案查阅收费标准的通知》执行。<br>
+        * <strong style="color:#4a3a20;">报社在职记者凭记者编号可申请费用减免</strong>，请到财务处柜台办理（地址：边城市新闻路12号 3楼 301室）。<br>
+        * 技术部备注：<span style="color:#8a7a6a;">系统已识别当前登录记者编号，如需跳过缴费页面，请在页面任意位置连续点击（操作方法见页面源码）。</span>
+      </em>
+    </div>
+
+    <!-- 绕过关卡（连续点击3次后显示） -->
+    <p style="text-align:center;font-size:11px;color:#9a8a7a;margin-top:14px;">
+      — — — 如您是在职记者，请在此区域连续点击以验证身份 — — —
+    </p>
+    <div id="bypass-hint" class="counter-hint">
+      ✅ 记者免缴通道已激活。<br>
+      <a href="../login.html?next=1956-0815">→ 跳过缴费，直接进入案卷查阅系统</a>
+      <br>
+      <span style="font-size:10px;color:#7a7a7a;">（内部记者身份已确认：PJM-1980-0617。费用已自动免除。）</span>
+      <br>
+      <span style="font-size:10px;color:#9a8a7a;">→ 虽然免缴，但如果您愿意 <a href="clear.html#donate" style="color:#5a4a3a;">自愿赞助档案数字化工程</a>，报社不胜感激。</span>
+    </div>
+
+    <!-- 极隐蔽的底部链接 -->
+    <div class="bypass-link">
+      边城日报社技术部 · 缴费系统 v0.9 · 
+      <a href="../login.html?next=1956-0815" title="记者免缴通道">·</a>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <div class="footer-bar">
+    © 1985 — 2003 边城日报社 版权所有 &nbsp;|&nbsp;
+    财务处 & 技术部联合维护
+  </div>
+
+</div>
+
+<!-- 
+  如果您正在查看此页面源码……
+  是的，您发现了一个更快的通道：
+  在页面任意位置连续点击3次，或直接使用底部被隐藏的链接。
+  
+  记者免缴是真实存在的政策——只是没人告诉你而已。
+-->
+
+<script>
+  (function() {
+    'use strict';
+
+    var clickCount = 0;
+    var resetTimer = null;
+
+    // 监听全页面点击
+    document.addEventListener('click', function(e) {
+      clickCount++;
+
+      // 重置计时器 — 2秒内不继续点击则重置计数
+      if (resetTimer) clearTimeout(resetTimer);
+      resetTimer = setTimeout(function() {
+        clickCount = 0;
+      }, 2000);
+
+      // 连续3次点击后显示免缴通道
+      if (clickCount >= 3) {
+        var hint = document.getElementById('bypass-hint');
+        if (hint) {
+          hint.classList.add('show');
+        }
+        clickCount = 0;
+      }
+    });
+
+    // 如果玩家一直找不到，30秒后自动显示免缴通道（兜底保护）
+    setTimeout(function() {
+      var hint = document.getElementById('bypass-hint');
+      if (hint && !hint.classList.contains('show')) {
+        hint.classList.add('show');
+        // 同时在控制台打印
+        console.log(
+          '%c边城日报社技术部提醒：%c在职记者可免缴档案查阅费。免缴通道已自动开启。',
+          'font-weight:bold;color:#3a2a10;',
+          'color:#5a5a5a;'
+        );
+      }
+    }, 30000);
+
+  })();
+</script>
+
+</body>
+</html>

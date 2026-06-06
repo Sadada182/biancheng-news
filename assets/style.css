@@ -1,0 +1,300 @@
+/* ═══════════════════════════════════════════
+   边城日报社 · 新闻存档查询系统 v1.2
+   样式表 — 最后修改：2003-04-12
+   建议分辨率：800×600 以上
+   兼容浏览器：IE 5.5+ / Netscape 6+
+   ═══════════════════════════════════════════ */
+
+/* ===== 全局 ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "SimSun", "宋体", "NSimSun", "新宋体", serif;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #1a1a1a;
+  background-color: #c8c0b4;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(160,150,140,0.08) 0px,
+      rgba(160,150,140,0.08) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+  padding: 16px 8px;
+  min-height: 100vh;
+}
+
+/* ===== 主容器 ===== */
+.system-container {
+  max-width: 760px;
+  margin: 0 auto;
+  background-color: #faf6ed;
+  border: 2px solid #808070;
+  outline: 1px solid #606050;
+  outline-offset: -4px;
+  box-shadow:
+    0 0 0 4px #d0c8b8,
+    0 4px 16px rgba(0,0,0,0.25);
+  padding: 0;
+}
+
+/* ===== 顶部横幅 ===== */
+.header-bar {
+  background: linear-gradient(180deg, #d8ccb4 0%, #c4b898 50%, #b8a888 100%);
+  padding: 12px 16px;
+  border-bottom: 3px double #8a7a5a;
+}
+
+.logo-placeholder {
+  width: 52px;
+  height: 52px;
+  border: 2px solid #7a6a4a;
+  background-color: #e0d4bc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #5a4a2a;
+  font-family: "KaiTi", "楷体", "STKaiti", serif;
+}
+
+.system-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #3a2010;
+  letter-spacing: 3px;
+  margin: 0;
+  font-family: "SimHei", "黑体", "STHeiti", sans-serif;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.5);
+}
+
+.system-ver {
+  font-size: 11px;
+  color: #6a5a3a;
+  letter-spacing: 1px;
+}
+
+/* ===== 分割线 ===== */
+.divider {
+  border: none;
+  border-top: 2px solid #a09880;
+  margin: 0;
+}
+
+.divider + .divider {
+  border-top: 1px dotted #b0a898;
+}
+
+/* ===== 状态栏 ===== */
+.status-bar {
+  padding: 5px 16px;
+  font-size: 12px;
+  color: #3a3a3a;
+  background-color: #ece4d4;
+  font-family: "SimSun", "宋体", serif;
+  border-bottom: 1px solid #c8c0b0;
+}
+
+.status-ok {
+  color: #2a6a2a;
+  font-weight: bold;
+}
+
+/* ===== 通用链接 ===== */
+a {
+  color: #000080;
+  text-decoration: underline;
+}
+a:hover {
+  color: #800000;
+}
+a:visited {
+  color: #400040;
+}
+
+/* ===== 登录区 ===== */
+.login-section {
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.login-table {
+  border-collapse: collapse;
+  border: 2px solid #808070;
+  background-color: #fdf9f0;
+  margin: 0 auto;
+}
+
+.login-table td,
+.login-table th {
+  border: 1px solid #a09888;
+}
+
+.login-header {
+  background-color: #c8bc9c;
+  color: #3a2010;
+  font-size: 15px;
+  padding: 8px;
+  font-family: "SimHei", "黑体", sans-serif;
+  letter-spacing: 3px;
+  text-align: center;
+}
+
+.label-cell {
+  font-size: 13px;
+  color: #3a2010;
+  text-align: right;
+  background-color: #f0e8d8;
+  padding: 4px 10px;
+}
+
+.input-cell {
+  background-color: #ffffff;
+}
+
+.system-input {
+  width: 220px;
+  padding: 5px 8px;
+  font-size: 14px;
+  font-family: "Courier New", "SimSun", monospace;
+  border: 2px inset #a09888;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  letter-spacing: 1px;
+}
+
+.system-input:focus {
+  outline: 1px solid #6a5a3a;
+  background-color: #fffff8;
+}
+
+.button-cell {
+  background-color: #f0e8d8;
+  padding: 14px 4px 6px;
+  text-align: center;
+}
+
+.system-button {
+  padding: 6px 24px;
+  font-size: 14px;
+  font-family: "SimSun", "宋体", serif;
+  border: 2px outset #c0b8a8;
+  background-color: #d8ccb4;
+  color: #3a2010;
+  cursor: pointer;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+.system-button:active {
+  border-style: inset;
+  background-color: #c8bca4;
+}
+
+.system-button.secondary {
+  background-color: #e8e0d0;
+  border-color: #c8c0b0;
+  font-weight: normal;
+}
+
+.error-cell {
+  background-color: #fdf9f0;
+  padding: 8px;
+}
+
+.error-msg {
+  color: #a03030;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* ===== 提示框 ===== */
+.notice-box {
+  margin: 0 16px 16px;
+  padding: 12px 16px;
+  border: 2px dashed #a09880;
+  background-color: #fef9f0;
+  font-size: 12px;
+  color: #4a4a4a;
+  line-height: 1.8;
+}
+
+.notice-box strong {
+  color: #5a3000;
+}
+
+.notice-box u {
+  text-decoration: none;
+  border-bottom: 1px dotted #7a6a5a;
+  color: #3a2010;
+}
+
+/* ===== 底部 ===== */
+.footer-bar {
+  padding: 8px 16px;
+  font-size: 11px;
+  color: #7a6a5a;
+  text-align: center;
+  background-color: #ece4d4;
+  border-top: 2px solid #c8c0b0;
+}
+
+/* ===== 报纸页专属 ===== */
+.newspaper-container {
+  max-width: 740px;
+  margin: 20px auto;
+  background-color: #f2ead8;
+  background-image:
+    linear-gradient(180deg,
+      rgba(200,180,150,0.12) 0%,
+      transparent 40%,
+      transparent 60%,
+      rgba(200,180,150,0.10) 100%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 5px,
+      rgba(180,160,140,0.04) 5px,
+      rgba(180,160,140,0.04) 6px
+    );
+  border: 1px solid #a09070;
+  box-shadow:
+    0 0 0 8px #d8d0c0,
+    0 0 0 9px #a09070,
+    3px 3px 16px rgba(0,0,0,0.3);
+  padding: 28px 32px 36px;
+  font-family: "SimSun", "宋体", "FangSong", "仿宋", serif;
+  position: relative;
+}
+
+/* 纸张折痕 */
+.newspaper-container::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 50%;
+  width: 1px;
+  background: rgba(160,144,112,0.15);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.newspaper-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== CSS隐藏数据 ===== */
+body::after {
+  content: "技术部备忘：①登录凭证来自百度百科「彭加木」（姓名拼音缩写+失踪日期）；②终结码=失踪日期YYYYMMDD-纬度前四位-经度前四位（坐标在报道源码中）；③此页面不含直接答案，请去互联网查找。";
+  display: none;
+}
+
+/* 建议分辨率 800×600 · IE 5.5+ */

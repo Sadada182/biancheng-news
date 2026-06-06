@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>案卷结案 · 边城日报社</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/loader.js"></script>
+  <style>
+    .conclusion-container { padding: 24px 28px; }
+    .seal-row { text-align:center; margin-bottom: 24px; }
+    .seal-row .seal {
+      display:inline-block; border:3px solid #5a3a10; color:#5a3a10;
+      font-size:22px; font-weight:bold; padding:8px 24px; transform:rotate(-5deg);
+      font-family:"KaiTi","楷体",serif; letter-spacing:6px;
+      background:rgba(90,58,16,0.04);
+    }
+    .sub-seal { font-size:12px; color:#7a6a5a; margin-top:6px; }
+
+    .section-title {
+      font-size:15px; color:#3a2010; border-left:4px solid #5a3a10;
+      padding-left:10px; margin:22px 0 10px;
+      font-family:"SimHei","黑体",sans-serif; letter-spacing:1px;
+    }
+
+    .timeline { margin:10px 0 18px; }
+    .tl-item { display:flex; padding:6px 0; border-bottom:1px dotted #c8b898; font-size:13px; }
+    .tl-date { width:90px; font-weight:bold; color:#5a3a10; flex-shrink:0; }
+    .tl-text { color:#4a4a4a; line-height:1.7; }
+    .tl-text .tag { font-size:10px; padding:0 4px; border:1px solid #b0a080; color:#8a7a6a; margin-right:4px; white-space:nowrap; }
+
+    .finding-box {
+      border:2px solid #b0a080; background:#fdf9f0; padding:12px 16px;
+      margin:10px 0; font-size:13px; line-height:2;
+    }
+    .finding-box strong { color:#5a3a10; }
+
+    .mystery-box {
+      border:2px dashed #a03030; background:#fef8f0; padding:14px 16px;
+      margin:16px 0; font-size:13px; line-height:2;
+    }
+    .mystery-box h4 { color:#a03030; margin:0 0 6px; font-family:"SimHei","黑体",sans-serif; }
+
+    .route-map {
+      text-align:center; margin:16px 0; padding:14px;
+      background:#fdf9f0; border:1px solid #c8b898; font-size:13px;
+      font-family:"Courier New","SimSun",monospace; line-height:2.2;
+      letter-spacing:1px;
+    }
+
+    .stat-grid { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+    .stat-card {
+      flex:1; min-width:120px; text-align:center; padding:12px 8px;
+      border:1px solid #c8b898; background:#fdf9f0;
+    }
+    .stat-card .num { font-size:28px; font-weight:bold; color:#5a3a10; font-family:"Georgia",serif; }
+    .stat-card .lbl { font-size:11px; color:#8a7a6a; margin-top:2px; }
+
+    .nav-row { text-align:center; margin-top:24px; padding-top:14px; border-top:1px solid #c8b898; }
+    .nav-row a { color:#000080; font-size:12px; margin:0 10px; }
+  </style>
+</head>
+<body>
+<div class="system-container">
+
+  <div class="header-bar">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="60" align="center" valign="middle"><div class="logo-placeholder">案</div></td>
+        <td align="center" valign="middle">
+          <h1 class="system-title">边城日报社 · 案卷结案报告</h1>
+          <span class="system-ver">档案编号：PJM-1980 · 分类：未解之谜</span>
+        </td>
+        <td width="60" align="center" valign="middle"><div class="logo-placeholder">卷</div></td>
+      </tr>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <div class="conclusion-container">
+
+    <!-- 结案印章 -->
+    <div class="seal-row">
+      <div class="seal">案 卷 归 档</div>
+      <p class="sub-seal">彭加木失踪案（1980）· 四版报道全部查阅完毕</p>
+    </div>
+
+    <!-- 数据统计 -->
+    <div class="stat-grid">
+      <div class="stat-card"><div class="num">4</div><div class="lbl">查阅报道</div></div>
+      <div class="stat-card"><div class="num">5</div><div class="lbl">关键发现</div></div>
+      <div class="stat-card"><div class="num">3</div><div class="lbl">未解谜题</div></div>
+      <div class="stat-card"><div class="num">∞</div><div class="lbl">民间猜测</div></div>
+    </div>
+
+    <!-- 案件概要 -->
+    <div class="section-title">📋 案件概要</div>
+    <div class="finding-box">
+      <strong>彭加木</strong>（1925—1980?），广东番禺人，生物化学家，中国科学院新疆分院副院长。<br>
+      1980年6月17日上午，在罗布泊库木库都克地区科考期间独自离营失踪，时年55岁。留下字条"<strong>我往东去找水井。彭。6月17日 上午9:30</strong>"。<br>
+      军方出动直升机百余架次、地面搜索覆盖800+平方公里，<strong>至今未找到遗体或随身物品</strong>。此案为新中国科学史上最著名的失踪事件。
+    </div>
+
+    <!-- 报道时间线 -->
+    <div class="section-title">📰 四版报道时间线</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">1980.06.23</div>
+        <div class="tl-text"><span class="tag">头版</span>失踪消息首发。首次披露字条内容、营地坐标（40°27'N, 90°35'E）、距米兰农场15公里。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">1980.06.25</div>
+        <div class="tl-text"><span class="tag">二版</span>搜救进展。发现水壶盖于以东5公里处。军用地图编号K-45-26-А。科考队承担未公开地质任务。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">1980.06.28</div>
+        <div class="tl-text"><span class="tag">三版</span>深度调查。"双鱼"代号金属碎片、无线电中断14:20-18:35、临时掩体在以东12公里处。</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">1985.04.12</div>
+        <div class="tl-text"><span class="tag">头版</span>五周年回顾。罗布泊科考已全面暂停。民间猜测汇总。家属呼吁重启调查。</div>
+      </div>
+    </div>
+
+    <!-- 彭加木最后路线 -->
+    <div class="section-title">🗺️ 彭加木最后已知路线</div>
+    <div class="route-map">
+      库木库都克营地<br>
+      │<br>
+      │ 向东出发（6月17日 上午9:30）<br>
+      │ 携带：水壶×2、海鸥4B-1相机、压缩饼干、军用地图K-45-26-А<br>
+      │<br>
+      ├─ <strong>3km</strong> → 新鲜脚印发现点<br>
+      │<br>
+      ├─ <strong>5km</strong> → 水壶盖丢弃处（第二版报道）<br>
+      │<br>
+      ├─ <strong>12km</strong> → 疑似临时掩体（第三版报道）<br>
+      │   └─ 几块大石排成半圆形，有坐卧痕迹，无随身物品<br>
+      │<br>
+      ├─ <strong>15km</strong> → 米兰农场（补给点）<br>
+      │<br>
+      ▼<br>
+      <strong>???</strong> 消失点 · 至今未解
+    </div>
+
+    <!-- 关键发现 -->
+    <div class="section-title">🔍 五項关键发现</div>
+    <div class="finding-box">
+      ① <strong>双鱼玉佩</strong> — 科考队在库木库都克以东发现的不明金属碎片，代号"双鱼"。材质无法与任何已知矿物匹配，表面有人工加工痕迹。此发现被列为机密。<br>
+      ② <strong>无线电中断</strong> — 失踪前两日（6月15日）14:20至18:35，科考队无线电中断四小时。同期外围地质队通讯正常。原因未公布。<br>
+      ③ <strong>多方科考队异常</strong> — 1978至1980年间，至少三批科考队进入同一区域，队员均出现头晕、幻觉等症状。院方归因于"地磁场环境"。<br>
+      ④ <strong>科考全面暂停</strong> — 1980年后，中科院新疆分院再未组织罗布泊腹地综合科考。需"特别审批"。<br>
+      ⑤ <strong>军用背景</strong> — 水壶编号PJM-JS-0617中的"JS"代表军用物资。彭加木携带1:50000军用地图。科考受到军方高度关注。
+    </div>
+
+    <!-- 未解之谜 -->
+    <div class="mystery-box">
+      <h4>❓ 留给你的未解之谜</h4>
+      1. 彭加木是否到达了米兰农场？掩体在12km处，农场在15km处——最后3公里发生了什么？<br>
+      2. "双鱼"金属碎片究竟是什么？它们与彭加木的失踪有关吗？<br>
+      3. 无线电为何在失踪前两天中断？那四小时里发生了什么？<br>
+      4. 科考队的"未公开地质任务"到底在寻找什么？<br>
+      5. 为什么1980年后罗布泊科考被全面暂停？
+    </div>
+
+    <!-- 民间猜测 -->
+    <div class="section-title">💬 民间主要猜测（源自第四版五周年回顾）</div>
+    <div class="finding-box" style="font-size:12px;">
+      <strong>「双鱼玉佩」超自然说：</strong>金属碎片具有未知特性，或与平行空间/物质复制有关。此为流传最广的都市传说版本。<br>
+      <strong>「被第三国劫持」说：</strong>彭加木掌握敏感地质信息，被境外势力带走。但缺乏证据。<br>
+      <strong>「主动隐退」说：</strong>彭加木发现了不愿公开的秘密，选择自行消失在罗布泊。<br>
+      <strong>「走失遇难」说：</strong>官方定性。在极端高温（地表65°C）和复杂地形下，体力耗尽后遇难并被流沙掩埋。
+    </div>
+
+    <!-- 读者评论区 -->
+    <div class="section-title">💬 读者讨论（<span id="comment-count">0</span> 条留言）</div>
+    <div style="border:2px solid #b0a080;background:#fdf9f0;padding:10px 14px;margin:8px 0;">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td><input type="text" id="c-name" placeholder="署名（选填）" maxlength="12" style="width:120px;padding:4px 6px;font-family:'SimSun',serif;font-size:12px;border:1px inset #b0a080;background:#fffef8;"></td>
+          <td style="padding-left:6px;"><input type="text" id="c-body" placeholder="写下你的看法或猜测..." maxlength="300" style="width:100%;padding:4px 6px;font-family:'SimSun',serif;font-size:12px;border:1px inset #b0a080;background:#fffef8;"></td>
+          <td width="70" style="padding-left:6px;"><button class="system-button" onclick="postComment()" style="padding:4px 12px;font-size:12px;">发 表</button></td>
+        </tr>
+      </table>
+      <p style="font-size:10px;color:#b0a090;margin:6px 0 0;">留言保存在本地浏览器中。文明讨论，理性分析。</p>
+    </div>
+    <div id="comments-list" style="margin-top:8px;">
+      <p style="text-align:center;font-size:12px;color:#b0a090;">还没有人发表看法。来做第一个分析者吧。</p>
+    </div>
+
+    <!-- 未完待续 -->
+    <div style="text-align:center;margin:28px 0 20px;padding:20px;border-top:2px solid #c8b898;border-bottom:2px solid #c8b898;">
+      <p style="font-size:11px;color:#b0a090;letter-spacing:2px;margin:0 0 8px;">— 本案卷到此结束 · 但故事并未终结 —</p>
+      <p style="font-size:18px;font-weight:bold;color:#5a3a10;font-family:'KaiTi','楷体',serif;letter-spacing:4px;margin:0 0 10px;">未 完 待 续</p>
+      <p style="font-size:12px;color:#6a5a5a;line-height:1.8;margin:0;">
+        报社档案室中还有一份编号为 <strong style="color:#a03030;">1956-0815-SOCIETY</strong> 的深度归档案卷等待查阅。<br>
+        那是 1956 年上海武宁路林家宅 37 号的故事——比彭加木失踪更古老、更离奇。<br>
+        <span style="font-size:11px;color:#8a7a6a;">当您准备好时，请返回首页，使用新的记者凭证登录系统。</span>
+      </p>
+      <p style="margin:14px 0 0;font-size:11px;color:#b0a090;">
+        « 罗布泊的风沙掩盖了真相，但档案不会说谎。»
+      </p>
+      <p style="margin:10px 0 0;font-size:10px;color:#c8b8a8;">
+        档案数字化经费有限，如需赞助请<a href="#" onclick="showDonate();return false;" style="color:#c8b8a0;">点击此处</a>。
+      </p>
+    </div>
+
+    <!-- 导航 -->
+    <div class="nav-row">
+      <a href="index.html">← 返回检索页</a> &nbsp;|&nbsp;
+      <a href="report-19850412.html">← 返回五周年回顾</a> &nbsp;|&nbsp;
+      <a href="../index.html">返回报社首页</a> &nbsp;|&nbsp;
+      <a href="../cat-wall.html">🐱 猫猫墙</a>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <div class="footer-bar">
+    边城日报社 · 档案编号 PJM-1980 &nbsp;|&nbsp;
+    案卷状态：<strong style="color:#5a3a10;">已归档</strong> &nbsp;|&nbsp;
+    下一案卷：<a href="../login.html?next=1956-0815" style="color:#000080;">1956-0815-SOCIETY</a>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var comments = [];
+  try { var s = localStorage.getItem('bordernews-pjm-conclusion-comments'); if (s) comments = JSON.parse(s); } catch(e) {}
+
+  function renderComments() {
+    var container = document.getElementById('comments-list');
+    document.getElementById('comment-count').textContent = comments.length;
+    if (comments.length === 0) {
+      container.innerHTML = '<p style="text-align:center;font-size:12px;color:#b0a090;">还没有人发表看法。来做第一个分析者吧。</p>';
+      return;
+    }
+    var html = '';
+    comments.slice().reverse().forEach(function(c, i) {
+      var idx = comments.length - 1 - i;
+      var name = c.name ? c.name.replace(/&/g,'&amp;').replace(/</g,'&lt;') : '匿名读者';
+      var body = c.body.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br>');
+      html += '<div style="border:1px solid #c8b898;background:#fefcf4;padding:8px 12px;margin-bottom:6px;">' +
+        '<div style="font-size:12px;color:#4a4a4a;line-height:1.8;">' + body + '</div>' +
+        '<div style="font-size:10px;color:#b0a090;margin-top:4px;">— ' + name + ' · ' + (c.time || '') +
+        ' <span onclick="deleteC(' + idx + ')" style="cursor:pointer;color:#c8b8a8;margin-left:8px;">删除</span></div>' +
+        '</div>';
+    });
+    container.innerHTML = html;
+  }
+
+  window.postComment = function() {
+    var bodyEl = document.getElementById('c-body');
+    var nameEl = document.getElementById('c-name');
+    var body = bodyEl.value.trim();
+    if (!body) { alert('请输入你的看法。'); return; }
+    var name = nameEl.value.trim() || '匿名读者';
+    var now = new Date();
+    var time = now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0')+' '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+    comments.push({name:name, body:body, time:time});
+    try { localStorage.setItem('bordernews-pjm-conclusion-comments', JSON.stringify(comments)); } catch(e) {}
+    bodyEl.value = ''; nameEl.value = '';
+    renderComments();
+  };
+
+  window.deleteC = function(idx) {
+    if (!confirm('确定删除这条留言吗？')) return;
+    comments.splice(idx, 1);
+    try { localStorage.setItem('bordernews-pjm-conclusion-comments', JSON.stringify(comments)); } catch(e) {}
+    renderComments();
+  };
+
+  document.getElementById('c-body').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); window.postComment(); }
+  });
+
+  renderComments();
+
+  // 赞助弹窗
+  window.showDonate = function() {
+    var modal = document.createElement('div');
+    modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:99999;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;';
+    modal.innerHTML = '<div style="background:#faf6ed;border:3px double #8a7a5a;padding:24px;text-align:center;max-width:320px;box-shadow:4px 4px 16px rgba(0,0,0,0.4);">' +
+      '<p style="font-size:14px;color:#3a2010;font-family:KaiTi,楷体,serif;letter-spacing:1px;margin:0 0 4px;">边城日报社 · 档案基金</p>' +
+      '<p style="font-size:11px;color:#8a7a6a;margin:0 0 14px;">感谢支持档案数字化工程</p>' +
+      '<div style="width:180px;height:180px;margin:0 auto 12px;border:2px solid #b0a080;background:#ece4d4;display:flex;align-items:center;justify-content:center;">' +
+        '<img src="../assets/donate-wechat.png" alt="赞赏码" style="max-width:170px;max-height:170px;" onerror="this.style.display=\'none\';this.parentElement.innerHTML=\'<span style=font-size:11px;color:#9a8a7a;>赞赏码<br>（请放入<br>assets/donate-wechat.png）</span>\'">' +
+      '</div>' +
+      '<p style="font-size:10px;color:#b0a090;margin:0 0 10px;">完全自愿，感谢每一份支持。</p>' +
+      '<button onclick="this.parentElement.parentElement.remove()" style="padding:4px 18px;font-size:12px;font-family:SimSun,serif;border:2px outset #c0b8a8;background:#d8ccb4;color:#3a2010;cursor:pointer;">关 闭</button>' +
+      '</div>';
+    document.body.appendChild(modal);
+    modal.addEventListener('click', function(e) { if (e.target === modal) modal.remove(); });
+  };
+})();
+</script>
+
+<!-- 
+  ═══════════════════════════════════════════════════
+  彭加木失踪案（1980）· 案卷结案报告
+  
+  感谢你完成了全部四版报道的查阅。
+  
+  历史真相：
+  彭加木至今未被找到。1980年的搜救行动是建国以来规模最大的
+  陆地搜救之一。2005年、2007年曾有民间探险队在罗布泊发现
+  疑似遗骸，但DNA鉴定均排除为彭加木。
+  
+  罗布泊至今仍是禁区。关于"双鱼玉佩"的传说仍在互联网流传。
+  真相，或许永远埋在罗布泊的黄沙之下。
+  
+  ——边城日报社档案室 · 2003年4月
+  ═══════════════════════════════════════════════════
+-->
+
+</body>
+</html>

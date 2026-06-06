@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>边城日报社 · 新闻存档查询系统</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/loader.js"></script>
+  <script src="assets/easter-egg.js"></script>
+  <!-- 
+    ═══════════════════════════════════════
+    内部系统 — 记者身份验证
+    技术部维护 · 版本 v1.2
+    
+    凭证不在源码中。格式沿用旧制。
+    ═══════════════════════════════════════
+  -->
+</head>
+<body>
+
+<div class="system-container">
+
+  <!-- 顶部横幅 -->
+  <div class="header-bar">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="60" align="center" valign="middle">
+          <div class="logo-placeholder">日报</div>
+        </td>
+        <td align="center" valign="middle">
+          <h1 class="system-title">边城日报社 · 新闻存档查询系统</h1>
+          <span class="system-ver">版本 v1.2 &nbsp;|&nbsp; 内部系统 · 仅限本报记者使用</span>
+        </td>
+        <td width="60" align="center" valign="middle">
+          <div class="logo-placeholder">社</div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 状态栏 -->
+  <div class="status-bar">
+    系统时间：<span id="sys-time">--</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+    服务器：BORDER-NEWS-01&nbsp;&nbsp;|&nbsp;&nbsp;
+    连接状态：<span class="status-ok">正常</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="index.html" style="color:#3a5a8a;font-size:11px;">← 返回报社首页</a>
+    &nbsp;|&nbsp;
+    <a href="notes.html" style="color:#6a6a5a;font-size:11px;">📓 记者手记</a>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 登录区域 -->
+  <div class="login-section">
+    <table class="login-table" align="center" border="1" cellpadding="8" cellspacing="0">
+      <tr>
+        <th colspan="2" class="login-header">记者身份验证（案件关联认证）</th>
+      </tr>
+      <tr>
+        <td class="label-cell" width="100">记者编号：</td>
+        <td class="input-cell">
+          <input type="text" id="reporter-id" class="system-input" placeholder="姓名缩写-YYYY-MMDD" maxlength="20" autocomplete="off">
+        </td>
+      </tr>
+      <tr>
+        <td class="label-cell">查询密码：</td>
+        <td class="input-cell">
+          <input type="password" id="query-password" class="system-input" placeholder="事件日期 YYYYMMDD" maxlength="12" autocomplete="off">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center" class="button-cell">
+          <button type="button" class="system-button" onclick="doLogin()">登 录 系 统</button>
+          &nbsp;&nbsp;
+          <button type="reset" class="system-button secondary" onclick="clearForm()">清 除</button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center" class="error-cell">
+          <span id="login-error" class="error-msg"></span>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 提示信息 -->
+  <div class="notice-box">
+    <strong>▸ 系统提示：</strong><br>
+    本系统最后维护于 <u>2003年4月12日</u>。<br>
+    部分历史案卷已转入离线归档。<br><br>
+    <strong>▸ 如何获取登录凭证：</strong><br>
+    本系统凭证<strong>不在页面源码中</strong>。<br>
+    请回忆您曾报道过的事件，或查阅外部资料。<br>
+    <span style="font-size:10px;color:#b0a090;">（提示：档案关联。格式沿用旧制。）</span>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 底部 -->
+  <div class="footer-bar">
+    © 1985 — 2003 边城日报社 版权所有 &nbsp;|&nbsp;
+    技术部维护 &nbsp;|&nbsp;
+    访问次数：<span id="visit-count">000047</span>
+  </div>
+
+</div>
+
+<script src="assets/auth.js"></script>
+<!-- 彩蛋 #3: 在密码框输入 meow -->
+<script>
+document.getElementById('query-password').addEventListener('input',function(){
+  if(this.value.toLowerCase().indexOf('meow')>=0){catEgg.show(3);this.value='';}
+});
+</script>
+</body>
+</html>

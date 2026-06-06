@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>边城日报社 · 新闻存档查询系统 — 检索结果</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/loader.js"></script>
+  <script src="../assets/easter-egg.js"></script>
+  <style>
+    /* 存档检索页专用样式 */
+    .nav-bar {
+      padding: 8px 14px;
+      background-color: #f0ead8;
+      border-bottom: 1px solid #b8a080;
+      font-size: 12px;
+    }
+    .nav-bar a {
+      color: #3a5a8a;
+      text-decoration: underline;
+    }
+    .search-box {
+      padding: 14px;
+      background-color: #faf6ef;
+    }
+    .search-box input[type="text"] {
+      width: 300px;
+    }
+    .search-box .system-button {
+      margin-left: 4px;
+    }
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+      font-size: 13px;
+    }
+    .result-table th {
+      background-color: #d4c8b0;
+      color: #3a2a10;
+      padding: 6px 8px;
+      border: 1px solid #b8a080;
+      text-align: center;
+      font-size: 12px;
+    }
+    .result-table td {
+      padding: 6px 8px;
+      border: 1px solid #c8b898;
+      vertical-align: middle;
+    }
+    .result-table tr:hover {
+      background-color: #fdf9e8;
+    }
+    .result-table a {
+      color: #3a5a8a;
+      text-decoration: none;
+    }
+    .result-table a:hover {
+      text-decoration: underline;
+      color: #1a3a6a;
+    }
+    .status-locked {
+      color: #a03030;
+      font-size: 12px;
+    }
+    .status-open {
+      color: #2a6a2a;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .page-result-count {
+      padding: 8px 14px;
+      font-size: 12px;
+      color: #5a5a5a;
+      background-color: #faf6ef;
+    }
+    .page-result-count strong {
+      color: #3a2a10;
+    }
+    .tooltip-hint {
+      cursor: help;
+      border-bottom: 1px dotted #8a7a5a;
+    }
+  </style>
+</head>
+<body>
+
+<div class="system-container">
+
+  <!-- 顶部横幅 -->
+  <div class="header-bar">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="60" align="center" valign="middle">
+          <div class="logo-placeholder">日报</div>
+        </td>
+        <td align="center" valign="middle">
+          <h1 class="system-title">边城日报社 · 新闻存档查询系统</h1>
+          <span class="system-ver">版本 v1.2 &nbsp;|&nbsp; 存档检索</span>
+        </td>
+        <td width="60" align="center" valign="middle">
+          <div class="logo-placeholder">档</div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 导航栏 -->
+  <div class="nav-bar">
+    当前记者：<strong>PJM-1980-0617</strong> &nbsp;|&nbsp;
+    权限级别：<strong>记者（只读）</strong> &nbsp;|&nbsp;
+    <a href="../index.html">← 退出系统</a>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 搜索区域 -->
+  <div class="search-box">
+    <label>关键词检索：</label>
+    <input type="text" class="system-input" id="search-keyword" value="彭加木" placeholder="输入关键词...">
+    <button class="system-button" onclick="doSearch()">检 索</button>
+    <span style="font-size:11px;color:#8a7a6a;margin-left:8px;">支持：标题/记者/日期/版面</span>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 结果计数 -->
+  <div class="page-result-count">
+    检索关键词 "<strong>彭加木</strong>" 共命中 <strong>4</strong> 条历史报道。
+    其中 <strong>1</strong> 条可查阅，<strong>3</strong> 条需解锁（仔细阅读报道正文寻找密码线索）。
+  </div>
+
+  <!-- 结果表格 -->
+  <table class="result-table" border="1" cellpadding="0" cellspacing="0">
+    <thead>
+      <tr>
+        <th width="130">编号</th>
+        <th width="90">日期</th>
+        <th width="60">版面</th>
+        <th>标题</th>
+        <th width="90">状态</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td align="center">1980-0623-A1</td>
+        <td align="center">1980-06-23</td>
+        <td align="center">头版</td>
+        <td><a href="report-198006.html">科学家彭加木在罗布泊神秘失踪 搜救行动仍在进行</a></td>
+        <td align="center"><span class="status-open">✅ 可查阅</span></td>
+      </tr>
+      <tr>
+        <td align="center">1980-0625-A2</td>
+        <td align="center">1980-06-25</td>
+        <td align="center">二版</td>
+        <td>
+          <span class="tooltip-hint" title="请先阅读第一版报道（1980-06-23）获取密码。" style="cursor:pointer;" onclick="unlockArchive(2)">██████████████████████████████████</span>
+        </td>
+        <td align="center"><span class="status-locked" id="egg-archived" style="cursor:default;">🔒 已归档</span></td>
+      </tr>
+      <tr>
+        <td align="center">1980-0628-A3</td>
+        <td align="center">1980-06-28</td>
+        <td align="center">三版</td>
+        <td>
+          <span class="tooltip-hint" title="请先阅读第二版报道（1980-06-25）获取密码。" style="cursor:pointer;" onclick="unlockArchive(3)">██████████████████████████████████</span>
+        </td>
+        <td align="center"><span class="status-locked">🔒 已归档</span></td>
+      </tr>
+      <tr>
+        <td align="center">1985-0412-A1</td>
+        <td align="center">1985-04-12</td>
+        <td align="center">头版</td>
+        <td>
+          <span class="tooltip-hint" title="请先阅读第三版报道（1980-06-28）获取密码。" style="cursor:pointer;" onclick="unlockArchive(4)">彭加木失踪五周年：真相仍扑朔迷离，家属呼吁重启调查</span>
+        </td>
+        <td align="center"><span class="status-locked">🔒 需高级权限</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+
+  <!-- 底部 -->
+  <div class="footer-bar">
+    © 1985 — 2003 边城日报社 版权所有 &nbsp;|&nbsp;
+    技术部维护 &nbsp;|&nbsp;
+    检索耗时：0.12 秒
+  </div>
+
+</div>
+
+<script>
+  // ═══════════ 解锁状态持久化 ═══════════
+  var unlockedArchives = [];
+  try { var s = localStorage.getItem('bordernews-unlocked'); if (s) unlockedArchives = JSON.parse(s); } catch(e) {}
+
+  function saveUnlocked() {
+    try { localStorage.setItem('bordernews-unlocked', JSON.stringify(unlockedArchives)); } catch(e) {}
+  }
+
+  function updateStatus() {
+    var rows = document.querySelectorAll('.result-table tbody tr');
+    // row 0 = 第一版（始终可查阅）
+    // row 1 = 第二版 A2
+    // row 2 = 第三版 A3
+    // row 3 = 第四版 A1
+
+    var maps = {
+      2: { row: 1, url: 'report-19800625.html', title: '彭加木失踪第八日：军方扩大搜救范围' },
+      3: { row: 2, url: 'report-19800628.html', title: '罗布泊之谜：彭加木失踪背后的科考疑云' },
+      4: { row: 3, url: 'report-19850412.html', title: '彭加木失踪五周年：真相仍扑朔迷离，家属呼吁重启调查' }
+    };
+
+    for (var n = 2; n <= 4; n++) {
+      var m = maps[n];
+      var row = rows[m.row];
+      if (!row) continue;
+      var titleCell = row.cells[3];
+      var statusCell = row.cells[4];
+
+      if (unlockedArchives.indexOf(n) >= 0) {
+        // 已解锁
+        titleCell.innerHTML = '<a href="' + m.url + '" style="color:#000080;">' + m.title + '</a>';
+        statusCell.innerHTML = '<span style="color:#2a6a2a;font-size:12px;font-weight:bold;">✅ 可查阅</span>';
+      }
+    }
+
+    // 更新结果计数
+    var unlockedCount = 1 + unlockedArchives.length; // 第一版 + 已解锁的
+    var totalCount = 4;
+    var countEl = document.querySelector('.page-result-count');
+    if (countEl) {
+      countEl.innerHTML = '检索关键词 "<strong>彭加木</strong>" 共命中 <strong>' + totalCount + '</strong> 条历史报道。其中 <strong>' + unlockedCount + '</strong> 条可查阅，<strong>' + (totalCount - unlockedCount) + '</strong> 条需解锁。';
+    }
+  }
+
+  // ═══════════ 解锁归档报道 ═══════════
+  window.unlockArchive = function(n) {
+    if (unlockedArchives.indexOf(n) >= 0) {
+      var urls = {2:'report-19800625.html', 3:'report-19800628.html', 4:'report-19850412.html'};
+      window.location.href = urls[n];
+      return;
+    }
+    var hints = {2:'提示：与时间有关', 3:'提示：与坐标数字有关', 4:'提示：与年份有关'};
+    var pwd = prompt('请输入归档密码：\n' + (hints[n] || ''));
+    if (!pwd) return;
+    pwd = pwd.trim();
+
+    var correct = false;
+    if (n === 2 && pwd === '30') correct = true;
+    if (n === 3 && pwd === '40279035') correct = true;
+    if (n === 4 && pwd === '1985') correct = true;
+
+    if (correct) {
+      unlockedArchives.push(n);
+      saveUnlocked();
+      updateStatus();
+      var urls = {2:'report-19800625.html', 3:'report-19800628.html', 4:'report-19850412.html'};
+      setTimeout(function(){ window.location.href = urls[n]; }, 500);
+      return;
+    }
+    alert('※ 密码错误。请仔细阅读上一版报道正文寻找线索。');
+  };
+
+  // 页面加载时更新状态
+  updateStatus();
+
+  // 彩蛋 #8: 点"已归档"3次
+  (function(){
+    var c=0,t=null,el=document.getElementById('egg-archived');
+    if(el) el.addEventListener('click',function(e){e.stopPropagation();
+      c++;if(c>=3){c=0;if(t)clearTimeout(t);catEgg.show(8);}
+      else{t=setTimeout(function(){c=0;},1000);}
+    });
+  })();
+
+  // 简单搜索模拟 — 输入彭加木以外的词显示无结果
+  function doSearch() {
+    var kw = document.getElementById('search-keyword').value.trim();
+    var countEl = document.querySelector('.page-result-count');
+    var tbody = document.querySelector('.result-table tbody');
+    
+    if (!kw || kw === '彭加木') {
+      // 显示完整结果
+      if (countEl) countEl.innerHTML = '检索关键词 "<strong>彭加木</strong>" 共命中 <strong>4</strong> 条历史报道。其中 <strong>1</strong> 条可查阅，<strong>3</strong> 条已归档或需高级权限。';
+      if (tbody) tbody.style.display = null;
+      return;
+    }
+    
+    // 无结果
+    if (countEl) countEl.innerHTML = '检索关键词 "<strong>' + kw.replace(/</g,'&lt;') + '</strong>" 共命中 <strong>0</strong> 条历史报道。';
+    if (tbody) tbody.style.display = 'none';
+  }
+</script>
+
+</body>
+</html>

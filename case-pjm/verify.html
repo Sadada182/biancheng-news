@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>边城日报社 · 案卷解密验证</title>
+  <!-- 
+    SYSLOG: 案件终结码验证页面
+    密码构成：失踪日期(YYYYMMDD)-纬度前四位-经度前四位
+    线索：失踪日期见百度百科「彭加木」，坐标见本报头版报道（查看源码获取被遮挡数据）
+    此页面源码不含直接答案。
+  -->
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/loader.js"></script>
+  <script src="../assets/easter-egg.js"></script>
+  <style>
+    .verify-section {
+      padding: 28px 14px;
+    }
+    .verify-section h3 {
+      font-size: 16px;
+      color: #3a2a10;
+      text-align: center;
+      margin-bottom: 6px;
+      font-family: "SimHei","黑体",sans-serif;
+    }
+    .verify-section .subtitle {
+      font-size: 12px;
+      color: #7a6a5a;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+    .code-format-hint {
+      font-size: 11px;
+      color: #8a7a6a;
+      text-align: center;
+      margin-top: 8px;
+      font-family: "Courier New",monospace;
+    }
+    .code-input {
+      width: 280px;
+      text-align: center;
+      letter-spacing: 1px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="system-container">
+
+  <!-- 顶部 -->
+  <div class="header-bar">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="60" align="center" valign="middle">
+          <div class="logo-placeholder">档</div>
+        </td>
+        <td align="center" valign="middle">
+          <h1 class="system-title">边城日报社 · 新闻存档查询系统</h1>
+          <span class="system-ver">案卷解密验证</span>
+        </td>
+        <td width="60" align="center" valign="middle">
+          <div class="logo-placeholder">密</div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <div class="nav-bar" style="padding:8px 14px;background:#f0ead8;font-size:12px;border-bottom:1px solid #b8a080;">
+    <a href="report-198006.html">← 返回报道</a> &nbsp;|&nbsp;
+    当前案卷：<strong>1980-0623-A1</strong>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 验证区域 -->
+  <div class="verify-section">
+    <h3>⚠ 案卷解密验证</h3>
+    <p class="subtitle">
+      请输入「案件终结码」以标记案卷 <strong>#1980-0623-A1</strong> 为「已解密」状态。<br>
+      终结码由系统根据案卷关键信息自动生成，请联系技术部获取或自行推导。
+    </p>
+
+    <table class="login-table" align="center" border="1" cellpadding="8" cellspacing="0">
+      <tr>
+        <th colspan="2" class="login-header">输入案件终结码</th>
+      </tr>
+      <tr>
+        <td class="label-cell" width="100">终结码：</td>
+        <td class="input-cell">
+          <input type="text" id="final-code" class="system-input code-input" placeholder="例：19800617-XXXX-XXXX" maxlength="20" autocomplete="off">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center" class="button-cell">
+          <button class="system-button" onclick="verifyCode()">验 证</button>
+          &nbsp;&nbsp;
+          <button class="system-button secondary" onclick="clearVerify()">清 除</button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center" class="error-cell">
+          <span id="verify-error" class="error-msg"></span>
+        </td>
+      </tr>
+    </table>
+
+    <p class="code-format-hint">
+      终结码格式提示：<span style="color:#c8b898;">█</span><span style="color:#c8b898;">█</span><span style="color:#c8b898;">█</span><span style="color:#c8b898;">█</span><span style="color:#c8b898;">█</span><span style="color:#c8b898;">█</span><span style="color:#c8b898;">█</span><span style="color:#c8b898;">█</span>-<span style="color:#c8b898;">█</span><span style="color:#c8b898;">█</span><span style="color:#c8b898;">█</span><span style="color:#c8b898;">█</span>-<span style="color:#c8b898;">█</span><span style="color:#c8b898;">█</span><span style="color:#c8b898;">█</span><span style="color:#c8b898;">█</span>
+    </p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="footer-bar">
+    © 1985 — 2003 边城日报社 版权所有 &nbsp;|&nbsp;
+    技术部维护
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    'use strict';
+
+    // 正确终结码：19800617-4027-9035
+    var CORRECT_CODE = '19800617-4027-9035';
+
+    window.verifyCode = function() {
+      var input = document.getElementById('final-code');
+      var errorEl = document.getElementById('verify-error');
+      var code = (input ? input.value.trim() : '');
+
+      if (errorEl) errorEl.style.color = '#a03030';
+
+      if (!code) {
+        if (errorEl) errorEl.textContent = '※ 请输入案件终结码。';
+        return;
+      }
+
+      // 移除所有空格和连字符进行模糊匹配
+      var normalized = code.replace(/[\s\-]/g, '');
+      var expected = CORRECT_CODE.replace(/-/g, '');
+
+      if (normalized === expected || code === CORRECT_CODE) {
+        // 正确！
+        if (errorEl) {
+          errorEl.style.color = '#2a6a2a';
+          errorEl.textContent = '✅ 终结码验证通过！案卷标记为已解密……';
+        }
+        setTimeout(function() {
+          window.location.href = 'clear.html';
+        }, 1000);
+        return;
+      }
+
+      // 部分匹配检测 — 给予模糊提示
+      if (normalized.indexOf('19800617') === 0) {
+        if (errorEl) errorEl.textContent = '※ 日期部分正确，但坐标段不匹配。请检查案卷中隐藏的坐标信息。';
+      } else if (normalized.indexOf('4027') >= 0 || normalized.indexOf('9035') >= 0) {
+        if (errorEl) errorEl.textContent = '※ 坐标段部分匹配，但日期段不正确。案卷中的关键日期是什么？';
+      } else {
+        if (errorEl) errorEl.textContent = '※ 终结码错误。请仔细查阅案卷 #1980-0623-A1 中的所有信息。';
+      }
+    };
+
+    window.clearVerify = function() {
+      var input = document.getElementById('final-code');
+      var errorEl = document.getElementById('verify-error');
+      if (input) input.value = '';
+      if (errorEl) {
+        errorEl.textContent = '';
+        errorEl.style.color = '#a03030';
+      }
+    };
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        window.verifyCode();
+      }
+    });
+
+    // 彩蛋 #10: 输入 cat
+    var fi=document.getElementById('final-code');
+    if(fi) fi.addEventListener('input',function(){
+      if(this.value.toLowerCase().indexOf('cat')>=0){catEgg.show(10);this.value='';}
+    });
+  })();
+</script>
+
+</body>
+</html>
