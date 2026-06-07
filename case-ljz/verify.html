@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>边城日报社 · 案卷解密验证</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/loader.js"></script><script src="../assets/easter-egg.js"></script>
+<style>
+.verify-section{padding:28px 14px;}
+.verify-section h3{font-size:16px;color:#3a2010;text-align:center;margin-bottom:6px;font-family:"SimHei","黑体",sans-serif;}
+.verify-section .subtitle{font-size:12px;color:#7a6a5a;text-align:center;margin-bottom:18px;}
+.code-format-hint{font-size:11px;color:#8a7a6a;text-align:center;margin-top:8px;font-family:"Courier New",monospace;}
+.code-input{width:280px;text-align:center;letter-spacing:1px;font-size:16px;}
+</style>
+</head>
+<body>
+<div class="system-container">
+  <div class="header-bar" style="background:linear-gradient(180deg,#3a2a1a,#2a1a10);border-bottom:2px solid #8a2010;">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="60" align="center"><div class="logo-placeholder" style="border-color:#8a6a4a;background:#2a1a10;color:#c8b898;">档</div></td>
+        <td align="center"><h1 class="system-title" style="color:#d8c8b0;">边城日报社 · 新闻存档查询系统</h1><span class="system-ver" style="color:#8a7a6a;">案卷解密验证</span></td>
+        <td width="60" align="center"><div class="logo-placeholder" style="border-color:#8a6a4a;background:#2a1a10;color:#c8b898;">密</div></td>
+      </tr>
+    </table>
+  </div>
+  <hr class="divider">
+  <div style="padding:8px 14px;background:#3a2a20;font-size:12px;border-bottom:1px solid #2a1a10;">
+    <a href="report-19560902.html" style="color:#d8b898;">← 返回最终报道</a> &nbsp;|&nbsp; 当前案卷：<strong style="color:#c87850;">1956-0902-SOCIETY</strong>
+  </div>
+  <hr class="divider">
+
+  <div class="verify-section">
+    <h3>⚠ 案卷解密验证</h3>
+    <p class="subtitle">请输入「案件终结码」以标记林家宅37号案为「已解密」状态。<br>终结码由案卷关键信息组合而成。</p>
+
+    <table class="login-table" align="center" border="1" cellpadding="8" cellspacing="0" style="margin:0 auto;">
+      <tr><th colspan="2" class="login-header">输入案件终结码</th></tr>
+      <tr>
+        <td class="label-cell" width="100">终结码：</td>
+        <td class="input-cell"><input type="text" id="final-code" class="system-input code-input" placeholder="例：XXX-YYYY-ZZ" maxlength="20" autocomplete="off"></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center" class="button-cell">
+          <button class="system-button" onclick="verifyCode()">验 证</button>&nbsp;&nbsp;
+          <button class="system-button secondary" onclick="clearVerify()">清 除</button>
+        </td>
+      </tr>
+      <tr><td colspan="2" align="center" class="error-cell"><span id="verify-error" class="error-msg"></span></td></tr>
+    </table>
+    <p class="code-format-hint">终结码格式：<span style="color:#c8b898;">███</span>-<span style="color:#c8b898;">████</span>-<span style="color:#c8b898;">██</span></p>
+  </div>
+  <hr class="divider">
+  <div class="footer-bar" style="background:#3a2a20;color:#8a7a6a;border-top:2px solid #2a1a10;">© 1952—2003 边城日报社 · 技术部维护</div>
+</div>
+
+<script>
+(function(){
+  var CORRECT = 'YXX-1956-37';
+  window.verifyCode = function() {
+    var input = document.getElementById('final-code'), err = document.getElementById('verify-error');
+    var code = (input?input.value.trim():'').toUpperCase();
+    if (!code) { if(err) err.textContent='※ 请输入案件终结码。'; return; }
+    if (code === CORRECT) {
+      if(err){err.style.color='#2a6a2a';err.textContent='✅ 终结码验证通过！';}
+      setTimeout(function(){window.location.href='clear.html';},1000); return;
+    }
+    if (code.indexOf('1956')>=0&&code.indexOf('37')>=0) { if(err) err.textContent='※ 年份和门牌号正确，但嫌疑人缩写不正确。'; }
+    else if (code.indexOf('1956')>=0) { if(err) err.textContent='※ 年份正确，但缺少其他信息。'; }
+    else if (code.indexOf('37')>=0) { if(err) err.textContent='※ 门牌号正确，但缺少其他信息。'; }
+    else { if(err) err.textContent='※ 终结码错误。请仔细阅读三版报道中的所有信息。'; }
+  };
+  window.clearVerify = function() {
+    var i=document.getElementById('final-code'),e=document.getElementById('verify-error');
+    if(i)i.value='';if(e){e.textContent='';e.style.color='#a03030';}
+  };
+  document.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();window.verifyCode();}});
+})();
+</script>
+</body>
+</html>

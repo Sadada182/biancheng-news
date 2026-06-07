@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案卷解密完成 · 边城日报社</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script src="../assets/loader.js"></script>
+<style>
+.clear-container{padding:24px 20px;}
+.seal-row{text-align:center;margin-bottom:20px;}
+.seal-row .seal{display:inline-block;border:3px solid #5a1010;color:#5a1010;font-size:22px;font-weight:bold;padding:8px 24px;transform:rotate(-3deg);font-family:"KaiTi","楷体",serif;letter-spacing:6px;background:rgba(90,16,16,0.03);}
+.case-summary{border:1px solid #a08070;background:#fdf9f0;padding:14px 18px;margin-bottom:20px;font-size:13px;line-height:1.9;}
+.case-summary table{width:100%;border-collapse:collapse;}
+.case-summary td{padding:4px 8px;border-bottom:1px dotted #c8b898;vertical-align:top;}
+.case-summary .key-cell{width:100px;font-weight:bold;color:#4a2010;white-space:nowrap;}
+.nav-links{text-align:center;font-size:13px;margin-top:14px;}
+.nav-links a{color:#000080;margin:0 10px;}
+</style>
+</head>
+<body>
+<div class="system-container">
+  <div class="header-bar" style="background:linear-gradient(180deg,#3a2a1a,#2a1a10);border-bottom:2px solid #8a2010;">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="60" align="center"><div class="logo-placeholder" style="border-color:#8a6a4a;background:#2a1a10;color:#c8b898;">日</div></td>
+        <td align="center"><h1 class="system-title" style="color:#d8c8b0;">边城日报社 · 新闻存档查询系统</h1><span class="system-ver" style="color:#8a7a6a;">案卷解密完成</span></td>
+        <td width="60" align="center"><div class="logo-placeholder" style="border-color:#8a6a4a;background:#2a1a10;color:#c8b898;">报</div></td>
+      </tr>
+    </table>
+  </div>
+  <hr class="divider">
+
+  <div class="clear-container">
+    <div class="seal-row">
+      <div class="seal">已 解 密</div>
+      <p style="font-size:12px;color:#6a5a5a;margin-top:8px;">解密人：LJZ-1956-0815 &nbsp;|&nbsp; 解密时间：<span id="clear-time">--</span></p>
+    </div>
+
+    <div class="case-summary">
+      <table>
+        <tr><td class="key-cell">案卷编号</td><td>1956-0815-SOCIETY</td></tr>
+        <tr><td class="key-cell">案件名称</td><td>林家宅37号离奇事件</td></tr>
+        <tr><td class="key-cell">案发地点</td><td>上海武宁路林家宅37号</td></tr>
+        <tr><td class="key-cell">案发时间</td><td>1956年8月</td></tr>
+        <tr><td class="key-cell">关键人物</td><td>叶某某（嫌疑人）· 一家四口（失踪）</td></tr>
+        <tr><td class="key-cell">关键证物</td><td>铜钥匙 · 纸条"37号 地下室 第三块砖" · 符号徽章 · 四只碗</td></tr>
+        <tr><td class="key-cell">案件状态</td><td style="color:#2a6a2a;font-weight:bold;">✅ 已解密 — 案件终结码验证通过</td></tr>
+      </table>
+    </div>
+
+    <div style="text-align:center;margin:20px 0;padding:16px;border:2px dashed #5a1010;background:#fef8f0;">
+      <p style="font-size:14px;color:#3a2010;font-family:'KaiTi','楷体',serif;letter-spacing:2px;margin:0 0 8px;">「他们都还在里面。」</p>
+      <p style="font-size:11px;color:#8a7a6a;margin:0;">—— 叶某某在审讯室中唯一的一句话</p>
+      <p style="font-size:11px;color:#b0a090;margin:8px 0 0;">
+        林家宅37号已被拆除。但弄堂里的脚步声从未消失。<br>
+        本案卷结案报告已生成，包含完整时间线和未解之谜。
+      </p>
+      <p style="margin-top:12px;">
+        <a href="conclusion.html" style="display:inline-block;padding:6px 20px;border:2px solid #5a3a10;color:#5a3a10;text-decoration:none;font-size:13px;letter-spacing:3px;font-family:'SimHei','黑体',sans-serif;">📋 查阅案卷结案报告</a>
+      </p>
+    </div>
+
+    <div class="nav-links">
+      <a href="../index.html">← 返回报社首页</a> &nbsp;|&nbsp;
+      <a href="report-19560902.html">重新查看最终报道</a> &nbsp;|&nbsp;
+      <a href="index.html">返回检索页</a> &nbsp;|&nbsp;
+      <a href="../case-pjm/index.html">📂 彭加木失踪案</a>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="footer-bar" style="background:#3a2a20;color:#8a7a6a;border-top:2px solid #2a1a10;">
+    © 1952—2003 边城日报社 &nbsp;|&nbsp; 案卷解密记录已同步至离线存储
+  </div>
+</div>
+<script>
+(function(){
+  var now=new Date();
+  var el=document.getElementById('clear-time');
+  if(el)el.textContent=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0')+' '+String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+})();
+</script>
+</body>
+</html>
