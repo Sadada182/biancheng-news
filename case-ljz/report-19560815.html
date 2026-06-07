@@ -5,53 +5,105 @@
 <link rel="stylesheet" href="../assets/style.css">
 <script src="../assets/loader.js"></script><script src="../assets/easter-egg.js"></script>
 <style>
-.newspaper-container{max-width:740px;margin:20px auto;background:#f0e8d8;border:1px solid #807060;box-shadow:0 0 0 8px #c8c0b0,0 0 0 9px #706050,3px 3px 20px rgba(0,0,0,0.5);padding:28px 32px 36px;font-family:"SimSun","宋体",serif;position:relative;}
-.newspaper-container::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:rgba(120,80,60,0.1);pointer-events:none;z-index:0;}
+body{background:#1a1010;}
+.newspaper-container{max-width:740px;margin:20px auto;background:#f0e8d8;border:1px solid #807060;box-shadow:0 0 0 8px #c8c0b0,0 0 0 9px #706050,3px 3px 20px rgba(0,0,0,0.5);padding:28px 32px 24px;font-family:"SimSun","宋体",serif;position:relative;}
 .paper-header{text-align:center;border-bottom:3px double #4a2010;padding-bottom:12px;margin-bottom:12px;}
 .paper-name{font-size:34px;font-weight:bold;font-family:"KaiTi","楷体",serif;letter-spacing:6px;color:#2a0a00;margin:0;}
 .paper-meta{font-size:12px;color:#4a2010;letter-spacing:1px;margin-top:4px;border-top:1px solid #8a6050;padding-top:6px;}
 .headline{text-align:center;font-size:24px;font-weight:bold;font-family:"SimHei","黑体",sans-serif;color:#2a0a00;letter-spacing:3px;margin:16px 0 4px;}
-.subheadline{text-align:center;font-size:13px;color:#5a3020;margin-bottom:16px;font-family:"KaiTi","楷体",serif;}
 .article-columns{column-count:2;column-gap:28px;column-rule:1px solid #b89880;text-align:justify;font-size:14px;line-height:2.1;color:#3a2010;}
 .article-columns p{margin-bottom:8px;text-indent:2em;}
-.article-columns .byline{text-indent:0;font-weight:bold;font-size:13px;color:#4a2010;}
 .paper-footer{margin-top:18px;padding-top:10px;border-top:2px solid #a08070;font-size:11px;color:#6a5040;text-align:center;}
-.redacted{background:#1a1a1a;color:#1a1a1a;padding:0 2px;user-select:none;cursor:default;}
-.redacted-blood{background:#4a0808;color:#4a0808;padding:0 2px;user-select:none;cursor:default;}
-.warning-stamp{position:absolute;top:30px;right:-20px;border:2px solid #8a2010;color:#8a2010;padding:4px 10px;transform:rotate(15deg);font-size:11px;font-weight:bold;font-family:"KaiTi","楷体",serif;opacity:0.7;z-index:2;}
+.cipher{background:#1a1a1a;color:#1a1a1a;padding:0 3px;border-radius:1px;transition:all 0.3s;user-select:none;cursor:help;}
+.cipher.revealed{background:transparent;color:#8a2010;font-weight:bold;cursor:default;}
+.cipher-bar{padding:10px 16px;background:#2a1a10;border:2px solid #5a3020;margin:0 0 8px;text-align:center;}
+.cipher-bar span{color:#8a7a6a;font-size:11px;}
+.cipher-bar input{width:140px;padding:4px 8px;font-family:"Courier New",monospace;font-size:13px;border:1px inset #5a4030;background:#1a0a00;color:#c8b898;text-align:center;margin:0 6px;}
+.cipher-bar input:focus{outline:1px solid #8a2010;background:#2a1010;}
+.cipher-bar button{font-size:11px;padding:3px 14px;font-family:"SimSun",serif;border:2px outset #5a4030;background:#3a2010;color:#c8b898;cursor:pointer;letter-spacing:1px;}
+.cipher-bar button:active{border-style:inset;}
+.cipher-found{font-size:10px;color:#6a8a4a;margin-top:4px;}
 </style>
 </head>
 <body>
-<div style="max-width:740px;margin:10px auto 0;font-size:12px;color:#5a4a4a;">
-  <a href="index.html" style="color:#000080;">← 返回检索结果</a> &nbsp;|&nbsp; 边城日报社 · 新闻存档查询系统 &nbsp;|&nbsp; <span style="color:#8a2010;">社会版 · 敏感案件</span>
+<div style="max-width:740px;margin:10px auto 0;font-size:12px;color:#8a7a6a;">
+  <a href="index.html" style="color:#c8b898;">← 返回检索结果</a> &nbsp;|&nbsp; 边城日报社 · 新闻存档查询系统 &nbsp;|&nbsp; <span style="color:#c87850;">部分信息已加密</span>
 </div>
 
 <div class="newspaper-container">
-  <div class="warning-stamp">机 密</div>
   <div class="paper-header">
     <h1 class="paper-name">边 城 日 报</h1>
     <div class="paper-meta"><span>1956年8月15日</span><span>星期三</span><span>第892期</span><span>社会版</span></div>
   </div>
 
   <h2 class="headline">武宁路林家宅传出恶臭 警方破门发现骇人景象</h2>
-  <p class="subheadline">屋内空无一人却血迹斑斑 &nbsp;|&nbsp; 邻居称近日夜间听到异响 &nbsp;|&nbsp; 警方封锁现场</p>
+
+  <div class="cipher-bar">
+    <span>🔐 关键词解密：</span>
+    <input type="text" id="cipher-input" placeholder="输入关键词..." maxlength="10" autocomplete="off">
+    <button onclick="tryCipher()">解 密</button>
+    <div class="cipher-found" id="cipher-status"></div>
+  </div>
 
   <div class="article-columns">
-    <p class="byline">本报讯（社会版记者）</p>
-    <p>昨日下午，上海武宁路林家宅<span class="redacted">37</span>号传出浓烈腐臭气味，邻居不堪其扰后向派出所报案。普陀分局民警到达现场后多次敲门无人应答，遂决定破门而入。门被撞开的一瞬间，一股令人窒息的恶臭扑面而来，一名在场民警当场呕吐。</p>
-    <p>屋内景象令经验丰富的办案人员也感到震惊——<strong>墙壁、天花板和地板上遍布深色污渍</strong>，经初步鉴定为<span class="redacted-blood">大量人血</span>。然而更令人不安的是：整栋房屋<b>空无一人</b>。没有尸体、没有住户、没有任何人。</p>
-    <p>据房管部门记录，该处登记的住户为一家四口：叶某某（男，38岁）、其妻及两名子女。邻居反映，这家人搬来约半年，平日里深居简出，与邻里极少往来。<strong>最后一次有人见到这家人是在约十日前</strong>。</p>
-    <p>多名邻居向本报记者透露，最近一周内，每到深夜时分，该栋房屋中会传出<span class="redacted">类似低语和敲击声的动静</span>。一名住在隔壁的老人称："有天晚上我明明听到有人在小声说话，但那是半夜两点钟。我想这家人是不是吵架了……谁知道第二天还是一样，每天晚上都有。"</p>
+    <p>昨日下午，上海武宁路林家宅<span class="cipher" data-code="37">37</span>号传出浓烈腐臭气味，邻居不堪其扰后向派出所报案。普陀分局民警到达现场后多次敲门无人应答，遂决定破门而入。门被撞开的一瞬间，一股令人窒息的恶臭扑面而来，一名在场民警当场呕吐。</p>
+    <p>屋内景象令经验丰富的办案人员也感到震惊——<strong>墙壁、天花板和地板上遍布深色污渍</strong>，经初步鉴定为<span class="cipher" data-code="血迹">大量人血</span>。然而更令人不安的是：整栋房屋<b>空无一人</b>。没有尸体、没有住户、没有任何人。</p>
+    <p>据房管部门记录，该处登记的住户为<span class="cipher" data-code="人数">一家四口</span>：<span class="cipher" data-code="叶">叶某某</span>（男，<span class="cipher" data-code="年龄">38</span>岁）、其妻及两名子女。邻居反映，这家人搬来约半年，平日里深居简出。<strong>最后一次有人见到这家人是在约<span class="cipher" data-code="时间">十日前</span></strong>。</p>
+    <p>多名邻居向本报记者透露，最近<span class="cipher" data-code="时间">一周</span>内，每到深夜时分，该栋房屋中会传出<span class="cipher" data-code="声音">类似低语和敲击声的动静</span>。一名住在隔壁的老人称："有天晚上我明明听到有人在小声说话，但那是半夜两点钟。我想这家人是不是吵架了……谁知道第二天还是一样，<span class="cipher" data-code="声音">每天晚上都有</span>。"</p>
     <p>更令人费解的是，邻居们回忆，在传出异响的这段时间里，<strong>从未有人见到这家人进出</strong>。门始终紧闭。没有人买菜，没有人上班，没有人上学。</p>
-    <p>截至发稿时，警方已将林家宅37号全面封锁。普陀分局表示"案件正在调查中，不便透露更多细节"。本报记者注意到，封锁现场的警员数量远超一般刑事案件——<strong>至少三名便衣人员</strong>在现场外围巡视，神情严肃。</p>
-    <p>这是建国以来上海罕见的神秘案件。本报将持续关注。林家宅37号，一栋普通的弄堂房屋，一扇被撞开的门，一屋子挥之不去的血迹——<strong>以及四个凭空消失的人</strong>。</p>
+    <p>截至发稿时，警方已将林家宅<span class="cipher" data-code="37">37</span>号全面封锁。普陀分局表示"案件正在调查中，不便透露更多细节"。本报记者注意到，封锁现场的警员数量远超一般刑事案件——<strong>至少<span class="cipher" data-code="人数">三名</span>便衣人员</strong>在现场外围巡视。</p>
+    <p>这是建国以来上海罕见的神秘案件。本报将持续关注。林家宅<span class="cipher" data-code="37">37</span>号，一栋普通的弄堂房屋，一扇被撞开的门，一屋子挥之不去的血迹——<strong>以及<span class="cipher" data-code="人数">四个</span>凭空消失的人</strong>。</p>
   </div>
 
   <div class="paper-footer">
     边城日报 · 1956年8月15日 · 社会版 &nbsp;|&nbsp; 档案编号：1956-0815-SOCIETY<br>
-    <span style="font-size:10px;">本报道已做部分脱敏处理。二版追踪报道将于8月20日刊发。归档密码：门牌之数。</span>
+    <span style="font-size:10px;">部分案件信息已加密。输入正确关键词后可显示隐藏内容。后续报道请查阅内部系统。</span>
   </div>
 </div>
-<!-- 门牌之数 → 林家宅37号 → 37 -->
+
+<script>
+(function(){
+  var foundKeys = [];
+  try { var s = localStorage.getItem('bordernews-ljz-cipher-0815'); if (s) foundKeys = JSON.parse(s); } catch(e) {}
+
+  function revealAll() {
+    document.querySelectorAll('.cipher').forEach(function(el) {
+      if (foundKeys.indexOf(el.getAttribute('data-code')) >= 0) {
+        el.classList.add('revealed');
+      }
+    });
+    updateStatus();
+  }
+
+  function updateStatus() {
+    var total = new Set(); document.querySelectorAll('.cipher').forEach(function(e){total.add(e.getAttribute('data-code'))});
+    var st = document.getElementById('cipher-status');
+    if (st) st.textContent = foundKeys.length >= total.size ? '✅ 全部解密完成' : '🔒 已解密 ' + foundKeys.length + ' / ' + total.size + ' 个关键词';
+  }
+
+  window.tryCipher = function() {
+    var input = document.getElementById('cipher-input');
+    var val = (input ? input.value.trim() : '');
+    if (!val) return;
+    var matched = false;
+    document.querySelectorAll('.cipher').forEach(function(el) {
+      if (el.getAttribute('data-code') === val && foundKeys.indexOf(val) < 0) {
+        foundKeys.push(val); matched = true;
+      }
+    });
+    if (matched) {
+      try { localStorage.setItem('bordernews-ljz-cipher-0815', JSON.stringify(foundKeys)); } catch(e) {}
+      revealAll();
+    }
+    if (input) input.value = '';
+  };
+
+  document.getElementById('cipher-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); window.tryCipher(); }
+  });
+
+  revealAll();
+})();
+</script>
 </body>
 </html>

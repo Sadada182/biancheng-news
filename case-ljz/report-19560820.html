@@ -5,7 +5,8 @@
 <link rel="stylesheet" href="../assets/style.css">
 <script src="../assets/loader.js"></script><script src="../assets/easter-egg.js"></script>
 <style>
-.newspaper-container{max-width:740px;margin:20px auto;background:#f0e8d8;border:1px solid #807060;box-shadow:0 0 0 8px #c8c0b0,0 0 0 9px #706050,3px 3px 20px rgba(0,0,0,0.5);padding:28px 32px 36px;font-family:"SimSun","宋体",serif;}
+body{background:#1a1010;}
+.newspaper-container{max-width:740px;margin:20px auto;background:#f0e8d8;border:1px solid #807060;box-shadow:0 0 0 8px #c8c0b0,0 0 0 9px #706050,3px 3px 20px rgba(0,0,0,0.5);padding:28px 32px 24px;font-family:"SimSun","宋体",serif;}
 .paper-header{text-align:center;border-bottom:3px double #4a2010;padding-bottom:12px;margin-bottom:12px;}
 .paper-name{font-size:34px;font-weight:bold;font-family:"KaiTi","楷体",serif;letter-spacing:6px;color:#2a0a00;margin:0;}
 .paper-meta{font-size:12px;color:#4a2010;letter-spacing:1px;margin-top:4px;border-top:1px solid #8a6050;padding-top:6px;}
@@ -13,14 +14,19 @@
 .article-columns{column-count:2;column-gap:28px;column-rule:1px solid #b89880;text-align:justify;font-size:14px;line-height:2.1;color:#3a2010;}
 .article-columns p{margin-bottom:8px;text-indent:2em;}
 .paper-footer{margin-top:18px;padding-top:10px;border-top:2px solid #a08070;font-size:11px;color:#6a5040;text-align:center;}
-.redacted{background:#1a1a1a;color:#1a1a1a;padding:0 2px;user-select:none;cursor:default;}
-.redacted-red{background:#5a1010;color:#5a1010;padding:0 2px;user-select:none;cursor:default;}
-.evidence-box{border:2px solid #8a2010;background:#fef8f0;padding:10px 14px;margin:10px 0;font-size:12px;}
+.cipher{background:#1a1a1a;color:#1a1a1a;padding:0 3px;transition:all 0.3s;user-select:none;cursor:help;}
+.cipher.revealed{background:transparent;color:#8a2010;font-weight:bold;cursor:default;}
+.cipher-bar{padding:10px 16px;background:#2a1a10;border:2px solid #5a3020;margin:0 0 8px;text-align:center;}
+.cipher-bar span{color:#8a7a6a;font-size:11px;}
+.cipher-bar input{width:140px;padding:4px 8px;font-family:"Courier New",monospace;font-size:13px;border:1px inset #5a4030;background:#1a0a00;color:#c8b898;text-align:center;margin:0 6px;}
+.cipher-bar input:focus{outline:1px solid #8a2010;background:#2a1010;}
+.cipher-bar button{font-size:11px;padding:3px 14px;font-family:"SimSun",serif;border:2px outset #5a4030;background:#3a2010;color:#c8b898;cursor:pointer;letter-spacing:1px;}
+.cipher-found{font-size:10px;color:#6a8a4a;margin-top:4px;}
 </style>
 </head>
 <body>
-<div style="max-width:740px;margin:10px auto 0;font-size:12px;color:#5a4a4a;">
-  <a href="index.html" style="color:#000080;">← 返回检索结果</a> &nbsp;|&nbsp; 边城日报社 · 新闻存档查询系统
+<div style="max-width:740px;margin:10px auto 0;font-size:12px;color:#8a7a6a;">
+  <a href="index.html" style="color:#c8b898;">← 返回检索结果</a> &nbsp;|&nbsp; 边城日报社 · 新闻存档查询系统
 </div>
 
 <div class="newspaper-container">
@@ -31,24 +37,51 @@
 
   <h2 class="headline">林家宅命案续：警方发现更多诡异细节</h2>
 
-  <div class="evidence-box">
-    <strong>※ 独家追踪 ※</strong> 本报8月15日社会版独家披露林家宅37号离奇命案后引起广泛关注。记者通过多方渠道获取了调查最新进展。
+  <div class="cipher-bar">
+    <span>🔐 关键词解密：</span>
+    <input type="text" id="cipher-input" placeholder="输入关键词..." maxlength="10" autocomplete="off">
+    <button onclick="tryCipher()">解 密</button>
+    <div class="cipher-found" id="cipher-status"></div>
   </div>
 
   <div class="article-columns">
-    <p>林家宅37号案的调查进入第五天。据一位接近调查组的知情人士透露，法医在屋内提取到的血迹样本经过初步化验，确认<b>至少属于四个人</b>——与登记住户人数吻合。但血迹的分布方式令法医感到极度困惑：<span class="redacted-red">大量血迹集中在地板缝隙和墙壁低处，呈现出一种"被擦拭后重新渗出"的形态</span>。</p>
-    <p>"这不像是普通的凶杀现场，"该人士压低声音说，"那些血迹的分布方式……更像是<b>有人试图清理过，但血迹又从地板下面渗了上来</b>。法医在报告中用了一个很不专业的词——<span class="redacted">'活的血迹'</span>。"</p>
-    <p>警方在地下室发现了一个被木板封死的隔间。撬开后，里面有一张简陋的木桌，桌上摆着<span class="redacted-red">四只碗，碗中残留着已经干涸的深色液体</span>，具体成分仍在化验中。木桌旁的墙壁上用炭笔写着一些无法辨认的符号，警方已拍照送交专业机构分析。</p>
-    <p>而最令人不安的发现发生在昨天深夜。一名负责看守现场的年轻警员在凌晨三点左右听到屋内传出<span class="redacted">清晰的脚步声——从二楼沿着楼梯一步步走下来，停在了门后</span>。该警员立即呼叫支援，但破门后屋内依旧空无一人。普陀分局已下令增派看守人员，并要求警员<b>不得单独值夜班</b>。</p>
-    <p>关于失踪的四口之家，警方公布了更多背景信息：户主叶某某原籍江苏，据其老家亲属反映，叶某某离乡前曾加入过一个<span class="redacted">"民间宗教团体"</span>，具体性质不详。其妻为上海本地人，与娘家已多年没有联系。两个孩子中，长女约十二岁，幼子约七岁，均未在上海的学校登记入学。</p>
-    <p>截至发稿前，搜寻工作仍在继续。警方扩大了搜索范围至武宁路周边街区及苏州河沿岸。一位不具名的老刑警私下表示："<b>这个案子给我的感觉很不好。非常不好。</b>"</p>
+    <p>林家宅<span class="cipher" data-code="37">37</span>号案的调查进入第五天。法医在屋内提取到的血迹样本经过初步化验，确认<b>至少属于<span class="cipher" data-code="人数">四个人</span></b>——与登记住户人数吻合。但血迹的分布方式令法医感到极度困惑：<span class="cipher" data-code="血迹">大量血迹集中在地板缝隙和墙壁低处，呈现出一种"被擦拭后重新渗出"的形态</span>。</p>
+    <p>"这不像是普通的凶杀现场，"该人士压低声音说，"那些血迹的分布方式……更像是<b>有人试图清理过，但血迹又从地板下面渗了上来</b>。法医在报告中用了一个很不专业的词——<span class="cipher" data-code="血迹">'活的血迹'</span>。"</p>
+    <p>警方在<span class="cipher" data-code="地下室">地下室</span>发现了一个被木板封死的隔间。撬开后，里面有一张简陋的木桌，桌上摆着<span class="cipher" data-code="碗">四只碗</span>，碗中残留着已经干涸的深色液体，具体成分仍在化验中。木桌旁的墙壁上用炭笔写着一些无法辨认的<span class="cipher" data-code="符号">符号</span>。</p>
+    <p>而最令人不安的发现发生在昨天深夜。一名负责看守现场的年轻警员在凌晨三点左右听到屋内传出<span class="cipher" data-code="声音">清晰的脚步声——从二楼沿着楼梯一步步走下来，停在了门后</span>。该警员立即呼叫支援，但破门后屋内依旧空无一人。普陀分局已下令增派看守人员，并要求警员<b>不得单独值夜班</b>。</p>
+    <p>关于失踪的四口之家，警方公布了更多背景信息：户主<span class="cipher" data-code="叶">叶某某</span>原籍江苏，据其老家亲属反映，叶某某离乡前曾加入过一个<span class="cipher" data-code="宗教">"民间宗教团体"</span>，具体性质不详。其妻为上海本地人，与娘家已多年没有联系。</p>
+    <p>截至发稿前，搜寻工作仍在继续。一位不具名的老刑警私下表示："<b>这个案子给我的感觉很不好。非常不好。</b>"</p>
   </div>
 
   <div class="paper-footer">
-    边城日报 · 1956年8月20日 · 社会版 &nbsp;|&nbsp; 档案编号：1956-0820-SOCIETY<br>
-    <span style="font-size:10px;">三版深度报道将于9月2日刊发。查阅密码：事件发生之年份（四位数字）。</span>
+    边城日报 · 1956年8月20日 · 社会版 &nbsp;|&nbsp; 档案编号：1956-0820-SOCIETY
   </div>
 </div>
-<!-- 事件年份 → 1956年 → 1956 -->
+
+<script>
+(function(){
+  var foundKeys = [];
+  try { var s = localStorage.getItem('bordernews-ljz-cipher-0820'); if (s) foundKeys = JSON.parse(s); } catch(e) {}
+  function revealAll() {
+    document.querySelectorAll('.cipher').forEach(function(el) {
+      if (foundKeys.indexOf(el.getAttribute('data-code')) >= 0) el.classList.add('revealed');
+    });
+    var total = new Set(); document.querySelectorAll('.cipher').forEach(function(e){total.add(e.getAttribute('data-code'))});
+    var st = document.getElementById('cipher-status');
+    if (st) st.textContent = foundKeys.length >= total.size ? '✅ 全部解密完成' : '🔒 已解密 ' + foundKeys.length + ' / ' + total.size + ' 个关键词';
+  }
+  window.tryCipher = function() {
+    var input = document.getElementById('cipher-input'), val = (input ? input.value.trim() : '');
+    if (!val) return; var matched = false;
+    document.querySelectorAll('.cipher').forEach(function(el) {
+      if (el.getAttribute('data-code') === val && foundKeys.indexOf(val) < 0) { foundKeys.push(val); matched = true; }
+    });
+    if (matched) { try { localStorage.setItem('bordernews-ljz-cipher-0820', JSON.stringify(foundKeys)); } catch(e) {} revealAll(); }
+    if (input) input.value = '';
+  };
+  document.getElementById('cipher-input').addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); window.tryCipher(); } });
+  revealAll();
+})();
+</script>
 </body>
 </html>
