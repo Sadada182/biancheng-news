@@ -29,7 +29,14 @@
   try { accepted = localStorage.getItem(STORAGE_KEY) === '1'; } catch(e) {}
 
   if (!accepted) {
-    showAnnouncement();
+    // 等 body 和 loader 动画完成后再弹窗
+    if (document.body) {
+      setTimeout(function() { showAnnouncement(); }, 3000);
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() { showAnnouncement(); }, 3000);
+      });
+    }
   }
 
   function showAnnouncement() {
@@ -84,17 +91,16 @@
         '</div>' +
       '</div>';
 
-    document.body.appendChild(overlay);
-
-    // 阻止背景滚动
-    document.body.style.overflow = 'hidden';
+    var target = document.body || document.documentElement;
+    target.appendChild(overlay);
+    if (document.body) document.body.style.overflow = 'hidden';
   }
 
   window.acceptRules = function() {
     try { localStorage.setItem(STORAGE_KEY, '1'); } catch(e) {}
     var overlay = document.getElementById('rules-overlay');
     if (overlay) overlay.remove();
-    document.body.style.overflow = '';
+    if (document.body) document.body.style.overflow = '';
   };
 
   function showBanScreen(until) {
