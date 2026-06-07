@@ -41,7 +41,8 @@
     // 验证记者编号（支持多关卡 · 线索在百度百科各自事件词条中）
     var accounts = {
       'PJM-1980-0617': { pw: '19800617', to: 'case-pjm/index.html' },
-      'LJZ-1956-0815': { pw: '19560815', to: 'case-ljz/index.html' }
+      'LJZ-1956-0815': { pw: '19560815', to: 'case-ljz/index.html' },
+      'BUS-1995-1114': { pw: '19951114', to: 'case-375/index.html' }
     };
     var acc = accounts[reporterId.toUpperCase()];
 
