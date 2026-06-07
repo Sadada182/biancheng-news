@@ -19,68 +19,43 @@ body{background:#1a1010;}
 .cipher-bar{padding:10px 16px;background:#2a1a10;border:2px solid #5a3020;margin:0 0 8px;text-align:center;}
 .cipher-bar span{color:#8a7a6a;font-size:11px;}
 .cipher-bar input{width:140px;padding:4px 8px;font-family:"Courier New",monospace;font-size:13px;border:1px inset #5a4030;background:#1a0a00;color:#c8b898;text-align:center;margin:0 6px;}
-.cipher-bar input:focus{outline:1px solid #8a2010;background:#2a1010;}
-.cipher-bar button{font-size:11px;padding:3px 14px;font-family:"SimSun",serif;border:2px outset #5a4030;background:#3a2010;color:#c8b898;cursor:pointer;letter-spacing:1px;}
+.cipher-bar button{font-size:11px;padding:3px 14px;font-family:"SimSun",serif;border:2px outset #5a4030;background:#3a2010;color:#c8b898;cursor:pointer;}
 .cipher-found{font-size:10px;color:#6a8a4a;margin-top:4px;}
 </style>
 </head>
 <body>
-<div style="max-width:740px;margin:10px auto 0;font-size:12px;color:#8a7a6a;">
-  <a href="index.html" style="color:#c8b898;">← 返回检索结果</a> &nbsp;|&nbsp; 边城日报社 · 新闻存档查询系统
-</div>
+<div style="max-width:740px;margin:10px auto 0;font-size:12px;color:#8a7a6a;"><a href="index.html" style="color:#c8b898;">← 返回检索结果</a> &nbsp;|&nbsp; <span style="color:#c87850;">大量信息已加密</span></div>
 
 <div class="newspaper-container">
-  <div class="paper-header">
-    <h1 class="paper-name">边 城 日 报</h1>
-    <div class="paper-meta"><span>1956年8月20日</span><span>星期一</span><span>第897期</span><span>社会版 · 追踪报道</span></div>
-  </div>
-
+  <div class="paper-header"><h1 class="paper-name">边 城 日 报</h1><div class="paper-meta"><span>1956年8月20日</span><span>星期一</span><span>第897期</span><span>社会版 · 追踪报道</span></div></div>
   <h2 class="headline">林家宅命案续：警方发现更多诡异细节</h2>
 
   <div class="cipher-bar">
-    <span>🔐 关键词解密：</span>
-    <input type="text" id="cipher-input" placeholder="输入关键词..." maxlength="10" autocomplete="off">
-    <button onclick="tryCipher()">解 密</button>
-    <div class="cipher-found" id="cipher-status"></div>
+    <span>🔐 关键词：</span><input type="text" id="ci" placeholder="输入关键词解密..." maxlength="10" autocomplete="off"><button onclick="tryCipher()">解密</button>
+    <div class="cipher-found" id="cs"></div>
   </div>
 
   <div class="article-columns">
-    <p>林家宅<span class="cipher" data-code="37">37</span>号案的调查进入第五天。法医在屋内提取到的血迹样本经过初步化验，确认<b>至少属于<span class="cipher" data-code="人数">四个人</span></b>——与登记住户人数吻合。但血迹的分布方式令法医感到极度困惑：<span class="cipher" data-code="血迹">大量血迹集中在地板缝隙和墙壁低处，呈现出一种"被擦拭后重新渗出"的形态</span>。</p>
-    <p>"这不像是普通的凶杀现场，"该人士压低声音说，"那些血迹的分布方式……更像是<b>有人试图清理过，但血迹又从地板下面渗了上来</b>。法医在报告中用了一个很不专业的词——<span class="cipher" data-code="血迹">'活的血迹'</span>。"</p>
-    <p>警方在<span class="cipher" data-code="地下室">地下室</span>发现了一个被木板封死的隔间。撬开后，里面有一张简陋的木桌，桌上摆着<span class="cipher" data-code="碗">四只碗</span>，碗中残留着已经干涸的深色液体，具体成分仍在化验中。木桌旁的墙壁上用炭笔写着一些无法辨认的<span class="cipher" data-code="符号">符号</span>。</p>
-    <p>而最令人不安的发现发生在昨天深夜。一名负责看守现场的年轻警员在凌晨三点左右听到屋内传出<span class="cipher" data-code="声音">清晰的脚步声——从二楼沿着楼梯一步步走下来，停在了门后</span>。该警员立即呼叫支援，但破门后屋内依旧空无一人。普陀分局已下令增派看守人员，并要求警员<b>不得单独值夜班</b>。</p>
-    <p>关于失踪的四口之家，警方公布了更多背景信息：户主<span class="cipher" data-code="叶">叶某某</span>原籍江苏，据其老家亲属反映，叶某某离乡前曾加入过一个<span class="cipher" data-code="宗教">"民间宗教团体"</span>，具体性质不详。其妻为上海本地人，与娘家已多年没有联系。</p>
-    <p>截至发稿前，搜寻工作仍在继续。一位不具名的老刑警私下表示："<b>这个案子给我的感觉很不好。非常不好。</b>"</p>
+    <p>林家宅<span class="cipher" data-code="37">37</span>号案的<span class="cipher" data-code="调查">调查</span>进入<span class="cipher" data-code="天数">第五天</span>。<span class="cipher" data-code="法医">法医</span>在屋内提取到的<span class="cipher" data-code="血迹">血迹样本</span>经过初步化验，确认<b>至少属于<span class="cipher" data-code="人数">四个人</span></b>——与登记<span class="cipher" data-code="住户">住户</span>人数吻合。但<span class="cipher" data-code="血迹">血迹</span>的分布方式令<span class="cipher" data-code="法医">法医</span>感到极度困惑：<span class="cipher" data-code="血迹">大量血迹集中在地板缝隙和墙壁低处，呈现出一种"被擦拭后重新渗出"的形态</span>。</p>
+    <p>"这不像是普通的<span class="cipher" data-code="凶杀">凶杀现场</span>，"该人士压低声音说，"那些<span class="cipher" data-code="血迹">血迹</span>的分布方式……更像是<b>有人试图<span class="cipher" data-code="清理">清理</span>过，但<span class="cipher" data-code="血迹">血迹</span>又从<span class="cipher" data-code="地板">地板下面</span>渗了上来</b>。<span class="cipher" data-code="法医">法医</span>在报告中用了一个很不专业的词——<span class="cipher" data-code="血迹">'活的血迹'</span>。"</p>
+    <p>警方在<span class="cipher" data-code="地下室">地下室</span>发现了一个被<span class="cipher" data-code="木板">木板封死</span>的隔间。撬开后，里面有一张<span class="cipher" data-code="木桌">简陋的木桌</span>，桌上摆着<span class="cipher" data-code="碗">四只碗</span>，碗中残留着已经<span class="cipher" data-code="干涸">干涸</span>的<span class="cipher" data-code="液体">深色液体</span>，具体成分仍在<span class="cipher" data-code="化验">化验</span>中。木桌旁的<span class="cipher" data-code="墙壁">墙壁</span>上用<span class="cipher" data-code="炭笔">炭笔</span>写着一些无法辨认的<span class="cipher" data-code="符号">符号</span>，警方已<span class="cipher" data-code="拍照">拍照</span>送交专业机构<span class="cipher" data-code="分析">分析</span>。</p>
+    <p>而最令人不安的发现发生在昨天<span class="cipher" data-code="深夜">深夜</span>。一名负责<span class="cipher" data-code="看守">看守现场</span>的年轻<span class="cipher" data-code="警员">警员</span>在<span class="cipher" data-code="凌晨">凌晨三点</span>左右听到屋内传出<span class="cipher" data-code="声音">清晰的脚步声——从二楼沿着楼梯一步步走下来，停在了门后</span>。该<span class="cipher" data-code="警员">警员</span>立即呼叫支援，但<span class="cipher" data-code="破门">破门</span>后屋内依旧<span class="cipher" data-code="空无一人">空无一人</span>。<span class="cipher" data-code="普陀">普陀分局</span>已下令增派<span class="cipher" data-code="看守">看守</span>人员，并要求<span class="cipher" data-code="警员">警员</span><b>不得单独值夜班</b>。</p>
+    <p>关于失踪的<span class="cipher" data-code="人数">四口之家</span>，警方公布了更多背景信息：户主<span class="cipher" data-code="叶">叶某某</span>原籍<span class="cipher" data-code="江苏">江苏</span>，据其老家<span class="cipher" data-code="亲属">亲属</span>反映，<span class="cipher" data-code="叶">叶某某</span>离乡前曾加入过一个<span class="cipher" data-code="宗教">"民间宗教团体"</span>，具体性质不详。其<span class="cipher" data-code="妻子">妻</span>为<span class="cipher" data-code="上海">上海本地人</span>，与<span class="cipher" data-code="娘家">娘家</span>已多年没有联系。两个孩子中，长女约十二岁，幼子约七岁，<span class="cipher" data-code="学校">均未在上海的学校登记入学</span>。</p>
+    <p>截至发稿前，<span class="cipher" data-code="搜寻">搜寻</span>工作仍在继续。警方扩大了<span class="cipher" data-code="搜索">搜索范围</span>至武宁路周边街区及<span class="cipher" data-code="苏州河">苏州河</span>沿岸。一位不具名的老刑警私下表示："<b>这个案子给我的感觉很不好。非常不好。</b>"</p>
   </div>
 
-  <div class="paper-footer">
-    边城日报 · 1956年8月20日 · 社会版 &nbsp;|&nbsp; 档案编号：1956-0820-SOCIETY
-  </div>
+  <div class="paper-footer">边城日报 · 1956年8月20日 · 社会版 &nbsp;|&nbsp; 档案编号：1956-0820-SOCIETY</div>
 </div>
 
 <script>
 (function(){
-  var foundKeys = [];
-  try { var s = localStorage.getItem('bordernews-ljz-cipher-0820'); if (s) foundKeys = JSON.parse(s); } catch(e) {}
-  function revealAll() {
-    document.querySelectorAll('.cipher').forEach(function(el) {
-      if (foundKeys.indexOf(el.getAttribute('data-code')) >= 0) el.classList.add('revealed');
-    });
-    var total = new Set(); document.querySelectorAll('.cipher').forEach(function(e){total.add(e.getAttribute('data-code'))});
-    var st = document.getElementById('cipher-status');
-    if (st) st.textContent = foundKeys.length >= total.size ? '✅ 全部解密完成' : '🔒 已解密 ' + foundKeys.length + ' / ' + total.size + ' 个关键词';
-  }
-  window.tryCipher = function() {
-    var input = document.getElementById('cipher-input'), val = (input ? input.value.trim() : '');
-    if (!val) return; var matched = false;
-    document.querySelectorAll('.cipher').forEach(function(el) {
-      if (el.getAttribute('data-code') === val && foundKeys.indexOf(val) < 0) { foundKeys.push(val); matched = true; }
-    });
-    if (matched) { try { localStorage.setItem('bordernews-ljz-cipher-0820', JSON.stringify(foundKeys)); } catch(e) {} revealAll(); }
-    if (input) input.value = '';
-  };
-  document.getElementById('cipher-input').addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); window.tryCipher(); } });
-  revealAll();
+  var f=[];try{var s=localStorage.getItem('bordernews-ljz-c-0820');if(s)f=JSON.parse(s)}catch(e){}
+  function r(){document.querySelectorAll('.cipher').forEach(function(e){if(f.indexOf(e.getAttribute('data-code'))>=0)e.classList.add('revealed')});
+  var t=new Set();document.querySelectorAll('.cipher').forEach(function(e){t.add(e.getAttribute('data-code'))});
+  var st=document.getElementById('cs');if(st)st.textContent=f.length>=t.size?'✅ 全部解密（'+t.size+'个）':'🔒 '+f.length+'/'+t.size+' 个关键词';}
+  window.tryCipher=function(){var i=document.getElementById('ci'),v=(i?i.value.trim():'');if(!v)return;var m=false;document.querySelectorAll('.cipher').forEach(function(e){if(e.getAttribute('data-code')===v&&f.indexOf(v)<0){f.push(v);m=true}});if(m){try{localStorage.setItem('bordernews-ljz-c-0820',JSON.stringify(f))}catch(e){}r()}if(i)i.value=''};
+  document.getElementById('ci').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();window.tryCipher()}});
+  r();
 })();
 </script>
 </body>
