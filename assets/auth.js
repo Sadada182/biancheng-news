@@ -38,35 +38,28 @@
       return;
     }
 
-    // 验证记者编号
-    // 正确编号：PJM-1980-0617（线索在百度百科「彭加木」词条中）
-    if (reporterId.toUpperCase() !== 'PJM-1980-0617') {
+    // 验证记者编号（支持多关卡 · 线索在百度百科各自事件词条中）
+    var accounts = {
+      'PJM-1980-0617': { pw: '19800617', to: 'case-pjm/index.html' },
+      'LJZ-1956-0815': { pw: '19560815', to: 'case-ljz/index.html' }
+    };
+    var acc = accounts[reporterId.toUpperCase()];
+
+    if (!acc) {
       if (errorEl) errorEl.textContent = '※ 记者编号不匹配。凭证与记者档案关联，格式沿用旧制。';
       return;
     }
-
-    // 验证密码
-    // 正确密码：19800617
-    if (password !== '19800617') {
+    if (password !== acc.pw) {
       if (errorEl) errorEl.textContent = '※ 查询密码不匹配。格式沿用旧制，请自行推导。';
       return;
     }
 
-    // 登录成功 → 跳转到存档检索页
+    // 登录成功
     if (errorEl) {
       errorEl.style.color = '#2a6a2a';
       errorEl.textContent = '身份验证通过，正在进入存档系统……';
     }
-
-    var nextParam = new URLSearchParams(window.location.search).get('next');
-    setTimeout(function() {
-      if (nextParam === '1956-0815') {
-        // 第二关入口（暂未实现，回到首页提示）
-        window.location.href = 'index.html';
-      } else {
-        window.location.href = 'case-pjm/index.html';
-      }
-    }, 800);
+    setTimeout(function() { window.location.href = acc.to; }, 800);
   };
 
   // --- 清除表单 ---

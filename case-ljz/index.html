@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>边城日报社 · 新闻存档查询系统 — 检索结果</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/loader.js"></script>
+  <script src="../assets/easter-egg.js"></script>
+  <style>
+    .system-container { background-color: #f5f0e8; }
+    .result-table { width: 100%; border-collapse: collapse; margin: 0; font-size: 13px; }
+    .result-table th { background-color: #3a2a20; color: #d8c8b0; padding: 6px 8px; border: 1px solid #2a1a10; text-align: center; font-size: 12px; }
+    .result-table td { padding: 6px 8px; border: 1px solid #c0b0a0; vertical-align: middle; }
+    .result-table tr:hover { background-color: #fdf5f0; }
+    .nav-bar { padding: 8px 14px; background-color: #3a2a20; border-bottom: 1px solid #2a1a10; font-size: 12px; color: #c8b8a0; }
+    .nav-bar a { color: #d8b898; }
+    .tooltip-hint { cursor: pointer; border-bottom: 1px dotted #8a7a6a; }
+    .search-box { padding: 14px; background-color: #faf6ef; border-bottom: 1px solid #c0b0a0; }
+    .status-locked { color: #a03030; font-size: 12px; }
+    .status-open { color: #2a6a2a; font-size: 12px; font-weight: bold; }
+    .page-result-count { padding: 8px 14px; font-size: 12px; color: #5a4a4a; background-color: #faf6ef; }
+  </style>
+</head>
+<body>
+<div class="system-container">
+  <div class="header-bar" style="background:linear-gradient(180deg,#3a2a1a,#2a1a10,#1a0a00);border-bottom:2px solid #8a2010;">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="60" align="center" valign="middle"><div class="logo-placeholder" style="border-color:#8a6a4a;background:#2a1a10;color:#c8b898;">日报</div></td>
+        <td align="center" valign="middle">
+          <h1 class="system-title" style="color:#d8c8b0;">边城日报社 · 新闻存档查询系统</h1>
+          <span class="system-ver" style="color:#8a7a6a;">版本 v1.2 &nbsp;|&nbsp; 存档检索 &nbsp;|&nbsp; 社会版深度归档</span>
+        </td>
+        <td width="60" align="center" valign="middle"><div class="logo-placeholder" style="border-color:#8a6a4a;background:#2a1a10;color:#c8b898;">档</div></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="nav-bar">
+    当前记者：<strong>LJZ-1956-0815</strong> &nbsp;|&nbsp; 权限：<strong style="color:#c87850;">社会版记者</strong> &nbsp;|&nbsp;
+    <a href="../index.html">← 退出系统</a>
+  </div>
+
+  <div class="search-box">
+    <label>关键词检索：</label>
+    <input type="text" class="system-input" id="search-keyword" value="林家宅" placeholder="输入关键词..." style="width:280px;">
+    <button class="system-button" onclick="doSearch()">检 索</button>
+    <span style="font-size:11px;color:#8a7a6a;margin-left:8px;">社会版 · 深度归档案卷</span>
+  </div>
+
+  <div class="page-result-count">
+    检索关键词 "<strong>林家宅</strong>" 共命中 <strong>3</strong> 条历史报道。其中 <strong>1</strong> 条可查阅，<strong>2</strong> 条需解锁（仔细阅读报道正文寻找密码线索）。
+  </div>
+
+  <table class="result-table" border="1" cellpadding="0" cellspacing="0">
+    <thead>
+      <tr><th width="130">编号</th><th width="90">日期</th><th width="60">版面</th><th>标题</th><th width="90">状态</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td align="center">1956-0815-SOCIETY</td><td align="center">1956-08-15</td><td align="center">社会版</td>
+        <td><a href="report-19560815.html" style="color:#000080;">上海武宁路林家宅发生离奇命案 警方介入调查</a></td>
+        <td align="center"><span class="status-open">✅ 可查阅</span></td>
+      </tr>
+      <tr>
+        <td align="center">1956-0820-SOCIETY</td><td align="center">1956-08-20</td><td align="center">社会版</td>
+        <td><span class="tooltip-hint" title="请先阅读第一版报道获取密码。" style="cursor:pointer;" onclick="unlockArchive(2)">██████████████████████████████████</span></td>
+        <td align="center"><span class="status-locked">🔒 已归档</span></td>
+      </tr>
+      <tr>
+        <td align="center">1956-0902-SOCIETY</td><td align="center">1956-09-02</td><td align="center">社会版</td>
+        <td><span class="tooltip-hint" title="请先阅读第二版报道获取密码。" style="cursor:pointer;" onclick="unlockArchive(3)">██████████████████████████████████</span></td>
+        <td align="center"><span class="status-locked">🔒 已归档</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+  <div class="footer-bar" style="background:#3a2a20;color:#8a7a6a;border-top:2px solid #2a1a10;">
+    © 1952 — 2003 边城日报社 · 技术部维护 · 检索耗时：0.18 秒
+  </div>
+</div>
+
+<script>
+  var unlocked = [];
+  try { var s = localStorage.getItem('bordernews-ljz-unlocked'); if (s) unlocked = JSON.parse(s); } catch(e) {}
+  function saveU() { try { localStorage.setItem('bordernews-ljz-unlocked', JSON.stringify(unlocked)); } catch(e) {} }
+
+  function updateStatus() {
+    var rows = document.querySelectorAll('.result-table tbody tr');
+    var maps = {
+      2: { row: 1, url: 'report-19560820.html', title: '林家宅命案续：警方发现更多诡异细节' },
+      3: { row: 2, url: 'report-19560902.html', title: '林家宅37号案：嫌疑人落网 案件出现惊人转折' }
+    };
+    for (var n = 2; n <= 3; n++) {
+      var m = maps[n], row = rows[m.row];
+      if (!row) continue;
+      if (unlocked.indexOf(n) >= 0) {
+        row.cells[3].innerHTML = '<a href="' + m.url + '" style="color:#000080;">' + m.title + '</a>';
+        row.cells[4].innerHTML = '<span style="color:#2a6a2a;font-size:12px;font-weight:bold;">✅ 可查阅</span>';
+      }
+    }
+    var uc = 1 + unlocked.length;
+    var el = document.querySelector('.page-result-count');
+    if (el) el.innerHTML = '检索关键词 "<strong>林家宅</strong>" 共命中 <strong>3</strong> 条历史报道。其中 <strong>' + uc + '</strong> 条可查阅，<strong>' + (3-uc) + '</strong> 条需解锁。';
+  }
+
+  window.unlockArchive = function(n) {
+    if (unlocked.indexOf(n) >= 0) {
+      var urls = {2:'report-19560820.html', 3:'report-19560902.html'};
+      window.location.href = urls[n]; return;
+    }
+    var hints = {2:'提示：与案发地点的数字有关', 3:'提示：与嫌疑人有关'};
+    var pwd = prompt('请输入归档密码：\n' + (hints[n] || ''));
+    if (!pwd) return; pwd = pwd.trim();
+    var correct = false;
+    if (n === 2 && pwd === '37') correct = true;
+    if (n === 3 && pwd === '1956') correct = true;
+    if (correct) {
+      unlocked.push(n); saveU(); updateStatus();
+      var urls = {2:'report-19560820.html', 3:'report-19560902.html'};
+      setTimeout(function(){ window.location.href = urls[n]; }, 500); return;
+    }
+    alert('※ 密码错误。请仔细阅读上一版报道正文寻找线索。');
+  };
+
+  updateStatus();
+
+  function doSearch() {
+    var kw = document.getElementById('search-keyword').value.trim();
+    var tbody = document.querySelector('.result-table tbody');
+    var el = document.querySelector('.page-result-count');
+    if (!kw || kw === '林家宅') { if (tbody) tbody.style.display = null; updateStatus(); return; }
+    if (tbody) tbody.style.display = 'none';
+    if (el) el.innerHTML = '检索关键词 "<strong>' + kw.replace(/</g,'&lt;') + '</strong>" 共命中 <strong>0</strong> 条。';
+  }
+</script>
+</body>
+</html>
