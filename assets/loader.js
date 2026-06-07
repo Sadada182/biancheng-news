@@ -6,6 +6,20 @@
 (function() {
   'use strict';
 
+  // ═══════════ 封禁检查（所有页面生效） ═══════════
+  try {
+    var banUntil = localStorage.getItem('bordernews-banned-until');
+    if (banUntil && Date.now() < parseInt(banUntil)) {
+      var remaining = Math.ceil((parseInt(banUntil) - Date.now()) / 60000);
+      document.documentElement.innerHTML =
+        '<div style="position:fixed;top:0;left:0;width:100%;height:100%;background:#1a0a00;display:flex;align-items:center;justify-content:center;font-family:SimSun,serif;color:#c8b8a0;z-index:999999;">' +
+        '<div style="text-align:center;"><div style="font-size:60px;">🚫</div>' +
+        '<h2 style="color:#a03030;font-family:SimHei,sans-serif;">访 问 被 暂 停</h2>' +
+        '<p>剩余约 <strong>' + remaining + '</strong> 分钟。请稍后刷新。</p></div></div>';
+      throw new Error('banned');
+    }
+  } catch(e) { if (e.message === 'banned') return; }
+
   // 避免在 iframe 中重复加载
   if (window.top !== window.self) return;
   // 如果已经有加载画面则跳过
