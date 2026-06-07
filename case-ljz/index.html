@@ -78,7 +78,7 @@
 
   <hr class="divider">
   <div class="footer-bar" style="background:#3a2a20;color:#8a7a6a;border-top:2px solid #2a1a10;">
-    © 1952 — 2003 边城日报社 · 技术部维护 · 检索耗时：0.18 秒
+    © 1952 — 2003 边城日报社 · 技术部维护 · 检索耗时：0.18 秒 &nbsp;|&nbsp; <span style="font-size:9px;color:#c8b8a8;cursor:pointer;" onclick="exportSave()" title="导出通关进度">导出进度</span> · <span style="font-size:9px;color:#c8b8a8;cursor:pointer;" onclick="importSave()" title="导入通关进度">导入进度</span>
   </div>
 </div>
 
@@ -128,6 +128,25 @@
   };
 
   updateStatus();
+
+  window.exportSave = function() {
+    var data = { unlocked: unlocked };
+    var blob = new Blob([JSON.stringify(data)], {type:'application/json'});
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = '边城日报社存档_LJZ_' + new Date().toISOString().slice(0,10) + '.json';
+    a.click(); URL.revokeObjectURL(a.href);
+  };
+  window.importSave = function() {
+    var input = document.createElement('input'); input.type = 'file'; input.accept = '.json';
+    input.onchange = function() {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        try { var data = JSON.parse(e.target.result);
+          if (data.unlocked) { unlocked = data.unlocked; saveU(); updateStatus(); alert('✅ 存档已恢复。请刷新页面。'); }
+        } catch(ex) { alert('※ 存档文件格式错误。'); }
+      }; reader.readAsText(input.files[0]);
+    }; input.click();
+  };
 
   function doSearch() {
     var kw = document.getElementById('search-keyword').value.trim();

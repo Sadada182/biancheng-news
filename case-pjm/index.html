@@ -188,7 +188,10 @@
   <div class="footer-bar">
     © 1985 — 2003 边城日报社 版权所有 &nbsp;|&nbsp;
     技术部维护 &nbsp;|&nbsp;
-    检索耗时：0.12 秒
+    检索耗时：0.12 秒 &nbsp;|&nbsp;
+    <span style="font-size:9px;color:#c8b8a8;cursor:pointer;" onclick="exportSave()" title="导出通关进度">导出进度</span>
+    <span style="font-size:9px;color:#c8b8a8;">·</span>
+    <span style="font-size:9px;color:#c8b8a8;cursor:pointer;" onclick="importSave()" title="导入通关进度">导入进度</span>
   </div>
 
 </div>
@@ -270,6 +273,32 @@
 
   // 页面加载时更新状态
   updateStatus();
+
+  // 存档导出
+  window.exportSave = function() {
+    var data = { unlocked: unlockedArchives, eggs: (function(){try{return JSON.parse(localStorage.getItem('bordernews-cat-eggs')||'[]')}catch(e){return[]}})() };
+    var blob = new Blob([JSON.stringify(data)], {type:'application/json'});
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = '边城日报社存档_' + new Date().toISOString().slice(0,10) + '.json';
+    a.click(); URL.revokeObjectURL(a.href);
+  };
+  // 存档导入
+  window.importSave = function() {
+    var input = document.createElement('input'); input.type = 'file'; input.accept = '.json';
+    input.onchange = function() {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          var data = JSON.parse(e.target.result);
+          if (data.unlocked) { unlockedArchives = data.unlocked; saveUnlocked(); updateStatus(); }
+          if (data.eggs) { localStorage.setItem('bordernews-cat-eggs', JSON.stringify(data.eggs)); }
+          alert('✅ 存档已恢复。请刷新页面查看。');
+        } catch(ex) { alert('※ 存档文件格式错误。'); }
+      };
+      reader.readAsText(input.files[0]);
+    };
+    input.click();
+  };
 
   // 彩蛋 #8: 点"已归档"3次
   (function(){
