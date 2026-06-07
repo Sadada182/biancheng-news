@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sadada182.github.io/biancheng-news/sitemap.xml
