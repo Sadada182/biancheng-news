@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>边城日报社 — 西北地区权威新闻媒体</title>
   <link rel="stylesheet" href="assets/style.css">
-  <script src="assets/rules.js"></script>
   <script src="assets/loader.js"></script>
   <script src="assets/easter-egg.js"></script>
   <!-- 
@@ -298,6 +297,49 @@
 (function(){
   var el=document.getElementById('egg-resolution');
   if(el) el.addEventListener('click',function(){catEgg.show(2);});
+})();
+</script>
+
+<!-- 公告弹窗：首次访问显示，3秒后弹出 -->
+<div id="rules-overlay" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:100000;background:rgba(0,0,0,0.75);align-items:center;justify-content:center;font-family:SimSun,宋体,serif;">
+  <div style="background:#faf6ed;border:3px double #8a7a5a;max-width:520px;width:90%;max-height:80vh;overflow-y:auto;box-shadow:4px 4px 20px rgba(0,0,0,0.5);">
+    <div style="background:#3a2010;color:#d8c8b0;padding:12px 16px;font-size:16px;font-weight:bold;font-family:SimHei,黑体,sans-serif;letter-spacing:2px;text-align:center;">📋 边城日报社 · 访客须知</div>
+    <div style="padding:16px 20px;font-size:13px;line-height:2;color:#3a2010;">
+      <p style="margin:0 0 10px;font-size:12px;color:#6a5a5a;">欢迎来到边城日报社。本站是一个沉浸式网页解谜游戏。在开始探索之前，请阅读以下规则：</p>
+      <div style="border-left:3px solid #5a3a10;padding-left:10px;margin:10px 0;">
+        <p style="margin:4px 0;"><strong>一、探索规则</strong></p>
+        <p style="margin:2px 0;font-size:12px;">· 线索在页面内容、源码及互联网公开资料中。请勿暴力破解。</p>
+        <p style="margin:2px 0;font-size:12px;">· 欢迎讨论，但<strong>请勿直接公开答案或密码</strong>——给别人留下探索的乐趣。</p>
+        <p style="margin:2px 0;font-size:12px;">· 鼓励团队协作。一个人找不到的线索，或许别人能发现。</p>
+      </div>
+      <div style="border-left:3px solid #8a2010;padding-left:10px;margin:10px 0;">
+        <p style="margin:4px 0;"><strong>二、禁止行为</strong></p>
+        <p style="margin:2px 0;font-size:12px;">· 禁止在评论区发布广告、色情、暴力或违法内容。</p>
+        <p style="margin:2px 0;font-size:12px;">· 禁止恶意刷屏或冒充报社工作人员。</p>
+        <p style="margin:2px 0;font-size:12px;color:#a03030;"><strong>违反以上规则将被临时踢出网站 5 分钟。</strong></p>
+      </div>
+      <div style="border-left:3px solid #3a5a3a;padding-left:10px;margin:10px 0;">
+        <p style="margin:4px 0;"><strong>三、存档与进度</strong></p>
+        <p style="margin:2px 0;font-size:12px;">· 进度保存在<strong>本机浏览器</strong>中。换电脑或清缓存后丢失。</p>
+        <p style="margin:2px 0;font-size:12px;">· <strong>建议备份：</strong>登录后在检索页底部点「导出进度」保存文件。</p>
+      </div>
+      <div style="border-left:3px solid #5a3a5a;padding-left:10px;margin:10px 0;">
+        <p style="margin:4px 0;"><strong>四、其他</strong></p>
+        <p style="margin:2px 0;font-size:12px;">· 无需注册、不收集个人信息。打赏自愿，不影响游戏。</p>
+      </div>
+      <div style="text-align:center;margin-top:16px;">
+        <button onclick="document.getElementById('rules-overlay').style.display='none';document.body.style.overflow='';localStorage.setItem('bordernews-rules-accepted','1');" style="padding:8px 32px;font-size:14px;font-family:SimSun,serif;border:2px outset #c0b8a8;background:#3a2010;color:#d8c8b0;cursor:pointer;letter-spacing:3px;font-weight:bold;">我已阅读，开始探索</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  if (localStorage.getItem('bordernews-rules-accepted')==='1') return;
+  setTimeout(function(){
+    var el = document.getElementById('rules-overlay');
+    if (el) { el.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+  }, 3200);
 })();
 </script>
 
