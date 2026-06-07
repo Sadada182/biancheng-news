@@ -38,7 +38,8 @@
 
   <div class="nav-bar">
     当前记者：<strong>LJZ-1956-0815</strong> &nbsp;|&nbsp; 权限：<strong style="color:#c87850;">社会版记者</strong> &nbsp;|&nbsp;
-    <a href="../index.html">← 退出系统</a>
+    <a href="../index.html">← 退出系统</a> &nbsp;|&nbsp;
+    <a href="../case-pjm/index.html" style="color:#a03030;">📂 切换案卷：彭加木失踪案</a>
   </div>
 
   <div class="search-box">
@@ -84,6 +85,8 @@
 <script>
   var unlocked = [];
   try { var s = localStorage.getItem('bordernews-ljz-unlocked'); if (s) unlocked = JSON.parse(s); } catch(e) {}
+  // 记住当前登录关卡
+  try { localStorage.setItem('bordernews-current-case', 'ljz'); } catch(e) {}
   function saveU() { try { localStorage.setItem('bordernews-ljz-unlocked', JSON.stringify(unlocked)); } catch(e) {} }
 
   function updateStatus() {

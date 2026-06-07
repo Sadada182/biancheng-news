@@ -111,7 +111,8 @@
   <div class="nav-bar">
     当前记者：<strong>PJM-1980-0617</strong> &nbsp;|&nbsp;
     权限级别：<strong>记者（只读）</strong> &nbsp;|&nbsp;
-    <a href="../index.html">← 退出系统</a>
+    <a href="../index.html">← 退出系统</a> &nbsp;|&nbsp;
+    <a href="../case-ljz/index.html" style="color:#a03030;">📂 切换案卷：林家宅37号</a>
   </div>
 
   <hr class="divider">
@@ -196,6 +197,8 @@
   // ═══════════ 解锁状态持久化 ═══════════
   var unlockedArchives = [];
   try { var s = localStorage.getItem('bordernews-unlocked'); if (s) unlockedArchives = JSON.parse(s); } catch(e) {}
+  // 记住当前登录关卡
+  try { localStorage.setItem('bordernews-current-case', 'pjm'); } catch(e) {}
 
   function saveUnlocked() {
     try { localStorage.setItem('bordernews-unlocked', JSON.stringify(unlockedArchives)); } catch(e) {}
